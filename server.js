@@ -7,3 +7,4 @@ app.set('views', __dirname + '/views');
 app.set('layout' , 'layouts/layout'); // possible delete 
 app.use(expressLayout);
 app.use(express.static("public"));
+app.listen(process.env.PORT || 3000);
