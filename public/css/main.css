@@ -1,0 +1,239 @@
+/* globale values  */
+:root {
+    --main-color: #A1CAF1;
+}
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+}
+html {
+	scroll-behavior: smooth;
+}
+body {
+	font-family: 'Work Sans', sans-serif;
+    margin: 0;
+    background-color: #efebeb7d;
+}
+.container {
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 15px;
+    padding-right: 15px;
+
+}
+/* small  */
+@media (min-width: 768px) {
+	.container {
+		width: 750px;
+	}
+}
+/* medium  */
+@media (min-width: 992px) {
+	.container {
+		width: 970px;
+	}
+}
+/* large  */
+@media (min-width: 1200px) {
+	.container {
+		width: 1170px;
+	}
+}
+.but {
+    padding: 0; 
+    border: none; 
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+/* globale values  */
+/* start header  */
+header {
+    padding-top: 20px;
+    position: sticky;
+    top: 0px;
+    background-color: white;
+    z-index: 30;
+}
+header .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    max-height: 500px;
+}
+.menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+.menu .searchInput {
+    display: flex;
+    align-items: center;
+    width: 150%;
+    height: 100%;
+    border: 0.5px solid black;
+    padding: 5px 10px;
+    border-radius: 0.25rem;
+}
+.menu .searchInput input {
+    border: none;
+    width: 100%;
+}
+.menu .searchInput input:focus-visible {
+    outline: none;
+}
+.submenu {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.submenu ul{
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+.submenu ul li {
+    margin-right: 25px;
+}
+.submenu ul a {
+    text-decoration: none;
+    color: black;
+}
+header ul li:hover a{
+    color: #82b1d6
+}
+header .icons {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    /* width: 30%;: */
+}
+header .icons .but {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+header .icons .but:hover {
+    background-color: #efefef;
+}
+.search input::placeholder {
+    font-size: 12px;
+    color: #aaa;
+}
+header .side {
+    padding-top: 20px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex; 
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    width: 300px;
+    height: 100%;
+    z-index: 6;
+    background-color: white;
+    border-left: 1px solid black;
+    margin-top: 0;
+} 
+header .side ul {
+    list-style: none; 
+    margin:0 0 20px;
+    padding: 0;
+    width: 100%;
+}
+header .side li {
+    /* margin: 20px 0; */
+    vertical-align: middle;
+    line-height: 58.5px;
+    height: 58.5px;
+    padding-left: 20px;
+    transition-duration: .3s;
+}
+header .side li:hover {
+    padding-left: 40px ;
+    transition-duration: .3s;
+    background-color:#efefef ;
+}
+header .side li a {
+    text-decoration: none;
+    color: black;
+}
+header .side li:hover a {
+    color: #82b1d6
+}
+header .side button {
+    border: transparent;
+    background-color: white ;
+}
+header .side .close {
+    display: block;
+    position: absolute !important;
+    top: 3% !important;
+    right: 2% !important;
+    font-size: 25px;
+    cursor: pointer;
+}
+header .side .close::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: -19%;
+    height: 1px;
+    width: 300px;
+    background-color: #00000057;
+}
+header .side .sideMenu  {
+    border-bottom: 1px solid #00000057;
+    width: 100%;
+}
+header .side .bt {
+    border-bottom: 1px solid #00000057;
+    width: 100%;
+
+}
+header .side .login {
+    height: 40px;
+    width: 150px;
+    margin: 50px auto 20px calc(50% - 75px);
+    border:1px solid black;
+    border-radius: 0.25rem;
+    background-color: #82b1d6;
+    color: white;
+}
+header .login:hover {
+    background-color: #548cb8;
+    transition-duration: .3s;
+}
+@media (max-width: 991px) {
+    .menu .searchInput {
+        width: 100%;
+    }
+}
+@media (max-width: 768px) {
+    header {
+        height: 72px;
+    }
+	header .icons {
+        display: none;
+    }
+    header .submenu {
+        display: none;
+    }
+    .menuicon {
+        display: block !important;
+    }
+}
+
+
+
+
+
+/* end header  */
