@@ -132,7 +132,7 @@ header .side {
     position: fixed;
     top: 0;
     right: 0;
-    display: flex; 
+    margin-right: -300px;
     flex-direction: column;
     flex-wrap: wrap;
     align-items: flex-start;
@@ -142,6 +142,7 @@ header .side {
     background-color: white;
     border-left: 1px solid black;
     margin-top: 0;
+    transition-duration: .5s;
 } 
 header .side ul {
     list-style: none; 
@@ -220,6 +221,7 @@ header .login:hover {
 @media (max-width: 768px) {
     header {
         height: 72px;
+        padding-top: 16px;
     }
 	header .icons {
         display: none;
@@ -231,7 +233,14 @@ header .login:hover {
         display: block !important;
     }
 }
-
+@keyframes side {
+    0%{
+        right: -100%;
+    }
+    100%{
+        right: 0;
+    }
+}
 
 
 
