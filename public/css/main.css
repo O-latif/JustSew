@@ -246,3 +246,73 @@ header .login:hover {
 
 
 /* end header  */
+/* start landing  */
+.landing {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("/images/landing.jpg");
+    height: 80vh;
+    position: relative;
+}
+.landing::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+.text {
+    font-family: 'Nothing You Could Do', cursive;
+    z-index: 2;
+    background-color: var(--main-color) ;
+    text-align: center;
+    padding: 30px 40px;
+    font-size: 30px;
+    border: 1px solid black;
+    border-radius: 0.25rem;
+    color: white;
+}
+/* end landing  */
+
+/* start products */
+.products {
+    padding: 50px 0;
+}
+.products .container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.products .container .box .proddet{
+    padding: 10px;
+}
+.products .container .box:hover {
+    box-shadow: 0 2px 4px rgb(45 51 63 / 20%);
+	transform: translateY(-10px);
+	transition: .3s;
+}
+.products .container .box .avis {
+    display: inline-flex;
+    align-items: center;
+}
+.products .container .box .avis .evaluation {
+    margin-right: 5px;
+}
+/* end products */
+/* start footer */
+footer {
+    padding: 50px 0;
+    background-color: #4a788d;
+}
+footer .contact .cont div{
+    border-radius: 50%;
+}
+footer .contact .cont {
+    border-radius: 50%;
+    padding: 10px;
+    background-color: white;
+}
+/* end footer */
