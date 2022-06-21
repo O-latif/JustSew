@@ -1,7 +1,9 @@
 <header>
     <div class="container">
         <div class="menu">
-            <div class="logo">Logo</div>
+            <div class="logo">
+                <img src="/images/logo.jpeg" alt="" width="55px" height="55px">
+            </div>
             <div class="search">
                 <div class="searchInput">
                     <button class="but"> <img src="/images/search_black_24dp.svg" alt="" style="padding-right: 5px;"></button>
@@ -9,14 +11,17 @@
                 </div>
             </div>
             <div class="icons">
-                <div class="user">
+                <div id="user">
                     <button class="but"><img src="/images/user.png" alt="" width="30px" height="30px"></button>
                 </div>
-                <div class="wishlist">
+                <div id="wishlist">
                     <button class="but"><img src="/images/heart.svg" alt="" width="30px" height="30px"></button>
                 </div>
-                <div class="cart">
+                <div id="cart">
                     <button class="but"><img src="/images/cart.svg" alt="" width="40px" height="40px"></button>
+                    <div class="shoppingCart">
+                        <p>You have no items in your shopping cart.</p>
+                    </div>
                 </div>
             </div>
             <div class="menuicon" style="display: none; cursor: pointer;">
@@ -25,10 +30,10 @@
         </div>
         <div class="submenu">
             <ul>
-                <li> <a href="#">Sewing Patterns</a></li>
+                <li> <a href="/" class="active">Sewing Patterns</a></li>
                 <li> <a href="#">Categories</a></li>
                 <li> <a href="#">About</a></li>
-                <li> <a href="#">Contact</a></li>
+                <li> <a href="/contact">Contact</a></li>
             </ul>
         </div>
     </div>
@@ -46,6 +51,15 @@
             <li> <a href="#">About</a></li>
             <li> <a href="#">Contact</a></li>
         </ul>
+    </div>
+    <div class="whishlist">
+        <div class="head">
+            <h2>WHISHLIST</h2>
+            <button class="close"><img src="/images/close_black_24dp.svg" alt=""></button>
+        </div>
+        <div class="whishcontent">
+            <p style="width: 100% ;"></p>You have no items in your Whishlist.</p>
+        </div>
     </div>
 </header>
 <script src="/javascript/menu.js"></script>

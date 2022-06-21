@@ -1,0 +1,119 @@
+:root {
+    --main-color: #A1CAF1;
+}
+.contact {
+    width: 100%;
+}
+.contact .container {
+    padding: 50px 0;
+}
+.head {
+    width: 60%;
+    margin-bottom: 20px;
+}
+.contact .container .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+form {
+    padding: 30px 50px;
+    width: 60%;
+    height: 90%;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    top: 5%;
+    border-radius: 0.25rem;
+    border: 1px solid black;
+}
+form label{
+    height: 40px;
+    margin:0 20px 0 0;
+    width: auto;
+    display: block;
+    text-align: center;
+    line-height: 40px;
+}
+form input{
+    height: 40px;
+    padding: 4px 10px;
+    display: block;
+    margin-bottom: 20px;
+    width: 100%;    
+    border-radius: 0.25rem;
+    border: black 0.5px solid;
+
+}
+textarea:focus-visible,
+form input:focus-visible {
+    outline-color: var(--main-color);
+}
+textarea {
+    resize: none;
+    padding: 10px;
+}
+form div {
+    display: flex;
+    width: 100%;
+}
+form .colLeft {
+    display: flex;
+    flex-wrap: wrap;
+    float: left;
+    width: 50%;
+    padding-right: 8px;
+}
+form .colRight {
+    display: flex;
+    flex-wrap: wrap;
+    float: right;
+    width: 50%;
+    padding-left:8px ;
+}
+form .inp {
+    width: 100%;
+}
+form .action {
+    height: 40px;
+    width: 150px;
+    margin: 20px calc(50% - 75px)  ;
+    border:1px solid black;
+    border-radius: 0.25rem;
+    background-color: var(--main-color);
+    color: white;
+    cursor: pointer;
+}
+form button:hover {
+    background-color: #548cb8;
+    transition-duration: .3s;
+}
+.bold {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+    
+	form {
+        top: 0;
+        width: 100% !important;
+        padding: 20px !important;
+        height: 100% !important;
+    }
+    .head {
+        width: 100%;
+        text-align: center;
+    }
+}
+@media (max-width: 991px) {
+    
+	form {
+        width: 70%;
+        padding: 30px;
+    }
+    
+}

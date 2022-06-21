@@ -10,42 +10,24 @@
 <!-- start products  -->
 <div class="products">
     <div class="container">
-        <div class="box">
-                <div class="prodPic"><a href="https://placeholder.com"></a><img src= "https://via.placeholder.com/300x400" alt=""></div> 
-                <div class="proddet">
-                    <h3 class="prodName">name</h3>
-                <div class="avis">
-                    <div class="evaluation" style="display: inline;">
-                        <img src="/images/star.svg" alt="" width="30px" height="30px">
-                        <img src="/images/star.svg" alt="" width="30px" height="30px">
-                        <img src="/images/star.svg" alt="" width="30px" height="30px">
-                        <img src="/images/star.svg" alt="" width="30px" height="30px">
-                        <img src="/images/star.svg" alt="" width="30px" height="30px">
-                    </div>
-                    <span class="views">(0)</span>
-                </div>
-                <h4>$12.99</h4>
+        <div class="title" style="width: 100%;display: flex;justify-content: center;margin-bottom: 40px;">
+            <h1>All Patterns</h1>
+        </div>
+        <div class="showType">
+                <select name="show" id="show">
+                        <option value="date">RELEASE DATE</option>
+                        <option value="name">PRODUCT NAME</option>
+                </select>
+                <div class="type">
+                        <div id="grid"><img  src="/images/grid.svg" alt="" onclick="griid()"></div>
+                        <div id="list"><img src="/images/list.svg" alt="" width="25px" height="32px" onclick="full()"></div>
                 </div>
         </div>
-        <div class="box">
-            <div class="prodPic"><a href="https://placeholder.com"></a><img src= "https://via.placeholder.com/300x400" alt=""></div> 
-            <div class="proddet">
-                <h3 class="prodName">name</h3>
-            <div class="avis">
-                <div class="evaluation" style="display: inline;">
-                    <img src="/images/star.svg" alt="" width="30px" height="30px">
-                    <img src="/images/star.svg" alt="" width="30px" height="30px">
-                    <img src="/images/star.svg" alt="" width="30px" height="30px">
-                    <img src="/images/star.svg" alt="" width="30px" height="30px">
-                    <img src="/images/star.svg" alt="" width="30px" height="30px">
-                </div>
-                <span class="views">(0)</span>
-            </div>
-            <h4>$12.99</h4>
-            </div>
-    </div>
+        <div class="all">
             <div class="box">
-                <div class="prodPic"><a href="https://placeholder.com"></a><img src= "https://via.placeholder.com/300x400" alt=""></div> 
+                <div class="prodPic"><a href="https://placeholder.com"></a><img src= "https://via.placeholder.com/300x400" alt="">
+                    <button class="addCart"> ADD TO CART</button>
+                </div> 
                 <div class="proddet">
                     <h3 class="prodName">name</h3>
                 <div class="avis">
@@ -57,12 +39,21 @@
                         <img src="/images/star.svg" alt="" width="30px" height="30px">
                     </div>
                     <span class="views">(0)</span>
+                
+                </div>
+                <div class="additional" style="width: 100%;display: none;">
+                    <p>name</p>
+                    <p>PDF Pattern</p>
+                    <p>sizes: ????</p>
+                    <p>Forms : ??????</p>
                 </div>
                 <h4>$12.99</h4>
                 </div>
-        </div>
+            </div>
             <div class="box">
-                <div class="prodPic"><a href="https://placeholder.com"></a><img src= "https://via.placeholder.com/300x400" alt=""></div> 
+                <div class="prodPic"><a href="https://placeholder.com"></a><img src= "https://via.placeholder.com/300x400" alt="">
+                    <button class="addCart"> ADD TO CART</button>
+                </div> 
                 <div class="proddet">
                     <h3 class="prodName">name</h3>
                 <div class="avis">
@@ -74,57 +65,132 @@
                         <img src="/images/star.svg" alt="" width="30px" height="30px">
                     </div>
                     <span class="views">(0)</span>
+                
+                </div>
+                <div class="additional" style="width: 100%;display: none;">
+                    <p>name</p>
+                    <p>PDF Pattern</p>
+                    <p>sizes: ????</p>
+                    <p>Forms : ??????</p>
                 </div>
                 <h4>$12.99</h4>
                 </div>
-        </div>
-        <div class="box">
-            <div class="prodPic"><a href="https://placeholder.com"></a><img src= "https://via.placeholder.com/300x400" alt=""></div> 
-            <div class="proddet">
-                <h3 class="prodName">name</h3>
-            <div class="avis">
-                <div class="evaluation" style="display: inline;">
-                    <img src="/images/star.svg" alt="" width="30px" height="30px">
-                    <img src="/images/star.svg" alt="" width="30px" height="30px">
-                    <img src="/images/star.svg" alt="" width="30px" height="30px">
-                    <img src="/images/star.svg" alt="" width="30px" height="30px">
-                    <img src="/images/star.svg" alt="" width="30px" height="30px">
+            </div>
+            <div class="box">
+                <div class="prodPic"><a href="https://placeholder.com"></a><img src= "https://via.placeholder.com/300x400" alt="">
+                    <button class="addCart"> ADD TO CART</button>
+                </div> 
+                <div class="proddet">
+                    <h3 class="prodName">name</h3>
+                <div class="avis">
+                    <div class="evaluation" style="display: inline;">
+                        <img src="/images/star.svg" alt="" width="30px" height="30px">
+                        <img src="/images/star.svg" alt="" width="30px" height="30px">
+                        <img src="/images/star.svg" alt="" width="30px" height="30px">
+                        <img src="/images/star.svg" alt="" width="30px" height="30px">
+                        <img src="/images/star.svg" alt="" width="30px" height="30px">
+                    </div>
+                    <span class="views">(0)</span>
+                
                 </div>
-                <span class="views">(0)</span>
+                <div class="additional" style="width: 100%;display: none;">
+                    <p>name</p>
+                    <p>PDF Pattern</p>
+                    <p>sizes: ????</p>
+                    <p>Forms : ??????</p>
+                </div>
+                <h4>$12.99</h4>
+                </div>
             </div>
-            <h4>$12.99</h4>
+            <div class="box">
+                <div class="prodPic"><a href="https://placeholder.com"></a><img src= "https://via.placeholder.com/300x400" alt="">
+                    <button class="addCart"> ADD TO CART</button>
+                </div> 
+                <div class="proddet">
+                    <h3 class="prodName">name</h3>
+                <div class="avis">
+                    <div class="evaluation" style="display: inline;">
+                        <img src="/images/star.svg" alt="" width="30px" height="30px">
+                        <img src="/images/star.svg" alt="" width="30px" height="30px">
+                        <img src="/images/star.svg" alt="" width="30px" height="30px">
+                        <img src="/images/star.svg" alt="" width="30px" height="30px">
+                        <img src="/images/star.svg" alt="" width="30px" height="30px">
+                    </div>
+                    <span class="views">(0)</span>
+                
+                </div>
+                <div class="additional" style="width: 100%;display: none;">
+                    <p>name</p>
+                    <p>PDF Pattern</p>
+                    <p>sizes: ????</p>
+                    <p>Forms : ??????</p>
+                </div>
+                <h4>$12.99</h4>
+                </div>
             </div>
-    </div>
-    <div class="box">
-        <div class="prodPic"><a href="https://placeholder.com"></a><img src= "https://via.placeholder.com/300x400" alt=""></div> 
-        <div class="proddet">
-            <h3 class="prodName">name</h3>
-        <div class="avis">
-            <div class="evaluation" style="display: inline;">
-                <img src="/images/star.svg" alt="" width="30px" height="30px">
-                <img src="/images/star.svg" alt="" width="30px" height="30px">
-                <img src="/images/star.svg" alt="" width="30px" height="30px">
-                <img src="/images/star.svg" alt="" width="30px" height="30px">
-                <img src="/images/star.svg" alt="" width="30px" height="30px">
+            <div class="box">
+                <div class="prodPic"><a href="https://placeholder.com"></a><img src= "https://via.placeholder.com/300x400" alt="">
+                    <button class="addCart"> ADD TO CART</button>
+                </div> 
+                <div class="proddet">
+                    <h3 class="prodName">name</h3>
+                <div class="avis">
+                    <div class="evaluation" style="display: inline;">
+                        <img src="/images/star.svg" alt="" width="30px" height="30px">
+                        <img src="/images/star.svg" alt="" width="30px" height="30px">
+                        <img src="/images/star.svg" alt="" width="30px" height="30px">
+                        <img src="/images/star.svg" alt="" width="30px" height="30px">
+                        <img src="/images/star.svg" alt="" width="30px" height="30px">
+                    </div>
+                    <span class="views">(0)</span>
+                
+                </div>
+                <div class="additional" style="width: 100%;display: none;">
+                    <p>name</p>
+                    <p>PDF Pattern</p>
+                    <p>sizes: ????</p>
+                    <p>Forms : ??????</p>
+                </div>
+                <h4>$12.99</h4>
+                </div>
             </div>
-            <span class="views">(0)</span>
+            <div class="box">
+                <div class="prodPic"><a href="https://placeholder.com"></a><img src= "https://via.placeholder.com/300x400" alt="">
+                    <button class="addCart"> ADD TO CART</button>
+                </div> 
+                <div class="proddet">
+                    <h3 class="prodName">name</h3>
+                <div class="avis">
+                    <div class="evaluation" style="display: inline;">
+                        <img src="/images/star.svg" alt="" width="30px" height="30px">
+                        <img src="/images/star.svg" alt="" width="30px" height="30px">
+                        <img src="/images/star.svg" alt="" width="30px" height="30px">
+                        <img src="/images/star.svg" alt="" width="30px" height="30px">
+                        <img src="/images/star.svg" alt="" width="30px" height="30px">
+                    </div>
+                    <span class="views">(0)</span>
+                
+                </div>
+                <div class="additional" style="width: 100%;display: none;">
+                    <p>name</p>
+                    <p>PDF Pattern</p>
+                    <p>sizes: ????</p>
+                    <p>Forms : ??????</p>
+                </div>
+                <h4>$12.99</h4>
+                </div>
+            </div>
+            
         </div>
-        <h4>$12.99</h4>
+        <div class="pages">
+            <div class="numbers">
+                <p> <a href="#" class="active">1</a> </p>
+                <p> <a href="#">2</a> </p>
+                <p> <a href="#"><img src="/images/next.svg" alt="" style="width: 19px; height: 19px;"></a> </p>
+            </div>
         </div>
-</div>
     </div>
 </div>
 <!-- end products  -->
-<!-- start footer  -->
-<footer>
-    <div class="container">
-        <div class="footerLinks"></div>
-        <div class="contact">
-            <div class="cont"> <div class="f" style="background-image: url('/images/facebook.svg'); width: 30px; height: 30px; background-color: white;"></div></div>
-            <div class="cont"><div class="ins" style="background-image: url('/images/instagram (2).svg'); width: 30px; height: 30px; background-color: white;"></div></div>
-            <div class="cont"><div class="tw" style="background-image: url('/images/twitter.svg'); width: 30px; height: 30px; background-color: white;"></div></div>
-            <div class="cont"><div class="tlg" style="background-image: url('/images/telegram.svg'); width: 30px; height: 30px; background-color: white;"></div></div>
-        </div>
-    </div>
-</footer>
-<!-- end footer  -->
+
+<script src="/javascript/home.js"></script>

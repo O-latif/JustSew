@@ -1,6 +1,7 @@
 /* globale values  */
 :root {
-    --main-color: #A1CAF1;
+    --main-color: #A1CAF1;   
+    --leftr : 85%
 }
 * {
 	-webkit-box-sizing: border-box;
@@ -50,6 +51,9 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+}
+.active {
+    color: var(--main-color) !important;
 }
 /* globale values  */
 /* start header  */
@@ -123,15 +127,82 @@ header .icons .but {
 header .icons .but:hover {
     background-color: #efefef;
 }
+#cart {
+    position: relative;
+}
+header .shoppingCart {
+    display: none;
+    align-items: center;
+    color: #aaa;
+    position: absolute;
+    background-color: #fefefe;
+    padding: 15px;
+    right: 0px;
+    height: 100px;
+    box-shadow: 0 0 5px rgb(0 0 0/ 25%);
+    min-width: 350px;
+}
+header .shoppingCart::before {
+    content: "";
+    position: absolute;
+    top: -14px;
+    right: 20px;
+    width: 0;
+    height: 0;
+    border: 7px solid transparent;
+    border-bottom-color: #fefefe;
+}
 .search input::placeholder {
     font-size: 12px;
     color: #aaa;
+}
+header .whishlist {
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    margin-left: -500px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    width: 500px;
+    height: 100%;
+    z-index: 6;
+    background-color: white;
+    border-right: 1px solid black;
+    margin-top: 0;
+    transition-duration: .5s;
+}
+header .whishlist .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+header .whishlist .head .close {
+    display: block;
+    position: absolute !important;
+    top: 5% !important;
+    right: 2% !important;
+    font-size: 25px;
+    cursor: pointer;
+}
+header .whishlist .head .close img {
+    width: 35px;
+    height: 35px;
+}
+header .whishlist .whishcontent {
+    width: 100%;
+    color: #aaa;
+    text-align: center;
 }
 header .side {
     padding-top: 20px;
     position: fixed;
     top: 0;
     right: 0;
+    display: flex;
     margin-right: -300px;
     flex-direction: column;
     flex-wrap: wrap;
@@ -170,7 +241,8 @@ header .side li a {
 header .side li:hover a {
     color: #82b1d6
 }
-header .side button {
+header .side button,
+header .whishlist button {
     border: transparent;
     background-color: white ;
 }
@@ -251,7 +323,8 @@ header .login:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url("/images/landing.jpg");
+    background-image: url("/images/land.jpg");
+    background-size: 1300px 575px;
     height: 80vh;
     position: relative;
 }
@@ -267,7 +340,7 @@ header .login:hover {
 .text {
     font-family: 'Nothing You Could Do', cursive;
     z-index: 2;
-    background-color: var(--main-color) ;
+    background-color: var(--main-color);
     text-align: center;
     padding: 30px 40px;
     font-size: 30px;
@@ -284,15 +357,167 @@ header .login:hover {
 .products .container {
     display: flex;
     flex-wrap: wrap;
+}
+.products .title h1 {
+    width: fit-content;
+    padding: 20px;
+    border: 2px black solid;
+    position: relative;
+    z-index: 1;
+    transition-duration: 0.5s;
+    transition-delay: 0.3s;
+}
+.products .title h1:hover {
+    color:white;
+    border: white 2px solid;
+}
+.products .title h1:hover::before {
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 52%;
+    border-radius: 0;
+    z-index: -1;
+}
+.products .title h1:hover::after {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    border-radius: 0;
+    z-index: -1;
+}
+.products .title h1::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -30px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--main-color);
+    transition-duration: 0.5s;
+}
+.products .title h1::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -30px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--main-color);
+    transition-duration: 0.5s;
+}
+.products .container .showType {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    margin-bottom: 30px;
+}
+.products .container .type {
+    display: flex;
+    flex-wrap: nowrap;
+} 
+.products .container .showType select {
+    border: black solid 1px;
+    border-width: 0 0 1px;
+    background-color: inherit;
+    margin-right: 20px;
+}
+.products .container .showType .type div {
+    height: 35px;
+    width: 35px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.products .container .showType .type div:hover {
+    background-color: #aaaaaa4a;
+
+}
+.products .container .showType .type #grid {
+    background-color: #aaaaaa4a;
+}
+
+.products .container .showType select:focus-visible {
+    outline: none;
+}
+.products .container .all {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: space-around;
+}
+.products .container .pages {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.products .container .pages .numbers {
+    display: flex;
+    flex-wrap: wrap;
     gap: 20px;
+    align-items: center;
+}
+.products .container .pages .numbers p {
+    align-items: center;
+}
+.products .container .pages .numbers a {
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    color: #aaa;
+}
+.products .container .pages .numbers a:hover {
+    color: black;
 }
 .products .container .box .proddet{
     padding: 10px;
+}
+.products .container .box {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    width: 300px;
+
+}
+.products .container .box .addCart {
+    width: 88%;
+    padding: 8px 0;
+    font-size: 13px;
+    height: auto;
+    border: 1px solid #fff;
+    position: absolute;
+    top: 60%;
+    right: 6%;
+    color: white;
+    background-color: var(--main-color);
+    display: none;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+.products .container .box::before {
+    content: "";
+    position: absolute;
+    top: 2%;
+    left: var(--leftr);
+    background-image: url('/images/heart.svg');
+    background-size: contain;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
 }
 .products .container .box:hover {
     box-shadow: 0 2px 4px rgb(45 51 63 / 20%);
 	transform: translateY(-10px);
 	transition: .3s;
+}
+.products .container .box:hover .addCart {
+    display: inline-block;
 }
 .products .container .box .avis {
     display: inline-flex;
@@ -304,15 +529,71 @@ header .login:hover {
 /* end products */
 /* start footer */
 footer {
-    padding: 50px 0;
+    padding: 50px 0 10px;
     background-color: #4a788d;
 }
-footer .contact .cont div{
+footer .contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+footer .contact::before {
+    content: "";
+    position: absolute;
+    height: 1px;
+    width: 40%;
+    top: 50%;
+    left: 0;
+    background-color: white;
+}
+footer .contact::after {
+    content: "";
+    position: absolute;
+    height: 1px;
+    width: 40%;
+    top: 50%;
+    left: 60%;
+    background-color: white;
+}
+footer .contact .cont div {
+    background-repeat: no-repeat;
+    width: 25px !important; 
+    height: 25px !important;
+    cursor: pointer;
+    background-size: 25px 25px;
+    position: relative;
+    
+}
+footer .contact .cont div::before {
+    content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+    height: 100%;
     border-radius: 50%;
+	background-color: #3d3d3d30;
+}
+footer .contact .cont div:hover::before  {
+    background-color: transparent;
 }
 footer .contact .cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 50%;
-    padding: 10px;
+    width: 40px;
+    height: 40px;
     background-color: white;
+}
+footer .copyright {
+    margin-top:20px ;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    color: white;
+    
 }
 /* end footer */

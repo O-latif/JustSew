@@ -17,6 +17,7 @@ app.use(expressLayout);
 app.use(express.static("public"));
 
 const homeRouter = require("./routes/home");
+const contactRouter = require("./routes/contact");
 
 
 
@@ -26,3 +27,4 @@ const homeRouter = require("./routes/home");
 
 
 app.use("/" , homeRouter);
+app.use("/" , contactRouter);

@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="/css/all.min.css">
     <!-- main css file  -->
     <link rel="stylesheet" href="/css/main.css">
+    <% if(css != "") {%>
+    <link rel="stylesheet" href="/css/<%=css%>.css">
+    <%}%>
     <!-- icons  -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/thinline.css">
     <!-- google fonts -->
@@ -23,6 +26,6 @@
 <body>
     <%- include("../partials/menu.ejs") %>
     <%- body %>
-
+    <%- include("../partials/footer.ejs") %>
 </body>
 </html>
