@@ -127,18 +127,19 @@ header .icons .but {
 header .icons .but:hover {
     background-color: #efefef;
 }
-#cart {
-    position: relative;
+
+header .shoppingCart .items {
+    display: flex;
+    justify-content: center;
 }
 header .shoppingCart {
     display: none;
     align-items: center;
-    color: #aaa;
     position: absolute;
     background-color: #fefefe;
-    padding: 15px;
+    padding: 25px;
     right: 0px;
-    height: 100px;
+    min-height: 100px;
     box-shadow: 0 0 5px rgb(0 0 0/ 25%);
     min-width: 350px;
 }
@@ -313,18 +314,17 @@ header .login:hover {
         right: 0;
     }
 }
-
-
-
-
 /* end header  */
+
+
+
 /* start landing  */
 .landing {
     display: flex;
     align-items: center;
     justify-content: center;
     background-image: url("/images/land.jpg");
-    background-size: 1300px 575px;
+    background-size: 100% 575px;
     height: 80vh;
     position: relative;
 }
@@ -482,7 +482,6 @@ header .login:hover {
     display: flex;
     flex-wrap: wrap;
     width: 300px;
-
 }
 .products .container .box .addCart {
     width: 88%;

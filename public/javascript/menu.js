@@ -4,8 +4,11 @@ let closewhish = document.querySelector(".whishlist .close");
 let whish = document.querySelector(".whishlist");
 let bmenu = document.querySelector(".menuicon");
 let cart = document.querySelector("#cart");
+let user = document.querySelector("#user");
 let whlist = document.querySelector("#wishlist");
 let cartbox = document.querySelector(".shoppingCart");
+let showadd = document.querySelector(".showadd");
+let additional = document.querySelector(".additional");
 
 
 bmenu.onclick = function() {
@@ -25,8 +28,16 @@ closewhish.onclick = function() {
 
 cart.onclick = () => {
     if(getComputedStyle(cartbox).display == "none" )
-        cartbox.style.cssText = "display : flex;"
+        cartbox.style.cssText = "display : block;"
     else 
         cartbox.style.cssText = "display : none;"
 } 
 
+// showadd.onclick = () => {
+//     if(getComputedStyle(additional).display == "none" )
+//         additional.style.cssText = "display : block; color:black;"
+//     else 
+//         additional.style.cssText = "display : none;"
+// } 
+user.onclick = () => location.assign("/login")
+    

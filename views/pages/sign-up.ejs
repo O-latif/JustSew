@@ -1,0 +1,61 @@
+<div class="account">
+    <div class="container acc">
+        <form class="n1" action="/sign-up" method="POST">
+            <div class="circles">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
+            
+            <div class="content">
+                    <h1>Join Us !</h1>
+                
+                    <div class="colLeft">
+                        <label for="preom">First Name</label>
+                        <div class="inp">
+                        <input id="prenom" type="text" placeholder="First Name" name="prenom" required>
+                        </div>
+                    </div>
+        
+                    <div class="colRight">
+                        <label for="nom">Last Name</label>
+                        <div class="inp">
+                            <input id="nom" name="name"  type="text" placeholder="Last Name" required>
+                        </div>
+                    </div>
+                    
+                    <label for="email">Email</label>
+                    <div class="inp">
+                        <input  type="email" placeholder="Email" name="email" required>
+                    </div>
+        
+                    <label for="mdp">Password</label>
+                    <div class="inp">
+                        <input  type="password" placeholder="Password" name="mdp" required>
+                    </div>
+                    <label for="mdpc">Confirm Password</label>
+                    <div class="inp">
+                        <input  type="password" placeholder="Confirm Password" name="mdpc" required>
+                    </div>
+                <button class="action inscrir" type="submit">Create an account</button>
+                <span class="quest">Already a member ?</span>
+                <button class="login cnct"> <span class="bold">Sign in</span> using your JustSew account.</button>
+        
+            </div>
+        </form>
+</div>
+</div>
+<script>
+    let login = document.querySelector(".login");
+        login.addEventListener("click", function(e){
+            
+            e.preventDefault();
+            console.log("hhh");
+            location.assign("/login")
+        })
+</script>

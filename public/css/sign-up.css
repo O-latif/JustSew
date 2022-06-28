@@ -1,0 +1,252 @@
+:root {
+    --main-color: #A1CAF1;
+}
+
+.account {
+    /* position: absolute; */
+    background-color: #ffffff99;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    top: 0;
+    align-items: center;
+    padding: 50px 0;
+    justify-content: center;
+    /* z-index: 31; */
+}
+.container.acc {
+    display: flex;
+    justify-content: center;
+}
+.back:hover {
+    color: var(--main-color);
+}
+
+.account form {
+    width: 45%;
+    height: 90%;
+    background-color: white;
+    padding:20px 10px ;
+    top: 5%;
+    border-radius: 0.25rem;
+    border: 1px solid black;
+    position: relative;
+}
+form::before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: -37px;
+    width: 100%;
+    height: 100%;
+    background-color: var(--main-color);
+    transform: rotate(6deg);
+    z-index: -1;
+
+}
+form .content {
+    padding: 30px 50px;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+form .circles {
+    display: flex;
+    gap: 25px;
+    justify-content: space-evenly;
+}
+form .circle {
+    width: 20px  !important;
+    height: 20px;
+    background-color: black;
+    border-radius: 50%;
+    position: relative;
+}
+form .circle::before {
+    content: "";
+    position: absolute;
+    top: -45px;
+    right: 5px;
+    width: 0;
+    height: 45px;
+    border: 2px solid black;
+    border-radius: 20% 20% 0% 0%;
+    background-color: black;
+}
+form .circle::after {
+    content: "";
+    position: absolute;
+    top: -45px;
+    left: 5px;
+    width: 0;
+    height: 45px;
+    border: 2px solid black;
+    border-radius: 20% 20% 0% 0%;
+    background-color: black;
+}
+.account form label{
+    height: 40px;
+    margin:0 20px 0 0;
+    width: auto;
+    display: block;
+    text-align: center;
+    line-height: 40px;
+}
+.account form input{
+    height: 40px;
+    padding: 4px 10px;
+    display: block;
+    margin-bottom: 20px;
+    width: 100%;    
+    border-radius: 0.25rem;
+    border: black 0.5px solid;
+
+}
+.account form input:focus-visible {
+    outline: none;
+}
+.account form div {
+    display: flex;
+    width: 100%;
+}
+.account form .colLeft {
+    display: flex;
+    flex-wrap: wrap;
+    float: left;
+    width: 50%;
+    padding-right: 8px;
+}
+.account form .colRight {
+    display: flex;
+    flex-wrap: wrap;
+    float: right;
+    width: 50%;
+    padding-left:8px ;
+}
+.account form .inp {
+    width: 100%;
+}
+.account form .action {
+    height: 40px;
+    width: 200px;
+    margin: 20px calc(50% - 100px)  ;
+    border:1px solid black;
+    border-radius: 0.25rem;
+    background-color: var(--main-color);
+    color: white;
+}
+.account form .action {
+    width: 100%;
+}
+.account form button:hover {
+    background-color: #82b1d6;
+    transition-duration: .3s;
+}
+.account form .quest {
+    display: block;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    margin-bottom: 20px;
+}
+.account form .quest::before {
+    content: "";
+    position: absolute;
+    left: 0%;
+    top: 50%;
+    width: 20%;
+    height: 1px;
+    background-color:#aeaeae;
+}
+.account form .quest::after {
+    content: "";
+    position: absolute;
+    right: 0%;
+    top: 50%;
+    width: 20%;
+    height: 1px;
+    background-color: #aeaeae;
+}
+.account form h1 {
+    width: 100%;
+    text-align: center;
+}
+.bold {
+    font-weight: bold;
+    text-decoration: underline;
+}
+.account .close {
+    position: relative;
+    top: -7%;
+    right: -108%;
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    background-color: var(--main-color) ;
+    border-radius: 50%;
+    display: flex;
+    color: white;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+form .cnct {
+    border: none !important;
+    background-color: transparent !important;
+    width: 100% !important;
+    color: black !important;
+    cursor: pointer;
+}
+@media (max-width: 767px) {
+    
+    
+    .container.acc {
+        display: block;
+        padding: 0;
+    }
+    .account {
+        width: 100%;
+    }
+	.account form {
+        top: 0;
+        width: 100% !important;
+        padding: 20px !important;
+        height: 100% !important;
+    }
+    .content {
+        top: 0;
+        width: 100% !important;
+        padding: 20px !important;
+        height: 100% !important;
+    }
+    .circles .circle:last-child,
+    .circles .circle:nth-child(7){
+        display: none;
+    }
+    .cover {
+        display: none;
+    }
+}
+@media (max-width: 991px) {
+    .container.acc {
+        display: flex;
+        padding: 0;
+    }
+	.account form {
+        width: 70%;
+        padding: 30px;
+    }
+    .account .close {
+        top: -6%;
+        right: -103% !important;
+    }
+}
+@media (max-width: 1220px) {
+    .account .close {
+        top: -6%;
+        right: -109%;
+    }
+}
