@@ -19,6 +19,7 @@ app.use(express.static("public"));
 const homeRouter = require("./routes/home");
 const contactRouter = require("./routes/contact");
 const authRouter = require("./routes/auth");
+const dprodRouter = require("./routes/addproduct");
 
 
 
@@ -29,3 +30,4 @@ const authRouter = require("./routes/auth");
 app.use("/" , authRouter);
 app.use("/" , homeRouter);
 app.use("/" , contactRouter);
+app.use("/" , dprodRouter);

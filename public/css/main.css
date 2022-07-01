@@ -102,17 +102,68 @@ header .container {
     display: flex;
     align-items: center;
     list-style: none;
+    margin: 10px 0 0;
 }
 .submenu ul li {
     margin-right: 25px;
+    display: flex;
+    height: 42px;
 }
 .submenu ul a {
     text-decoration: none;
     color: black;
 }
-header ul li:hover a{
+header ul li:hover .subA{
     color: #82b1d6
 }
+.categ li:last-child:hover .subcateg,
+.submenu ul li#categorie:hover .categ {
+    display: flex !important;
+}
+.submenu ul li#categorie,
+.categ li:last-child{
+    position: relative;
+}
+.submenu ul li#categorie .categ {
+    position: absolute;
+    top: 32px;
+    left: -15px;
+    color: #000 !important;
+    background-color: white;
+    height: auto;
+    width: 140px;
+}
+.submenu ul li#categorie .categ li:hover {
+    background-color: #efefef;
+}
+
+.subcateg {
+    display: none !important;
+    position: absolute;
+    top: -10px;
+    left: 100%;
+    background-color: #fff;
+    padding: 0;
+    flex-direction: column;
+    width: 120px;
+}
+.subcateg:hover a{
+    color: black;
+}
+.submenu ul li#categorie .categ {
+    display: none;
+    flex-wrap: wrap;
+    padding: 0px;
+}
+.submenu ul li#categorie .categ li {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px;
+    margin: 0;
+    height: 50px;
+}
+
 header .icons {
     display: flex;
     align-items: center;
@@ -451,6 +502,25 @@ header .login:hover {
     gap: 30px;
     justify-content: space-around;
 }
+.products .container .box {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    width: 300px;
+}
+.products .container .leader {
+    border: 5px dashed var(--main-color);
+    width: 300px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.products .container .leader:hover {
+    transform: translateY(-10px);
+    transition: .3s;
+}
 .products .container .pages {
     display: flex;
     justify-content: center;
@@ -474,15 +544,25 @@ header .login:hover {
 .products .container .pages .numbers a:hover {
     color: black;
 }
+.products .container .box .remove{
+    background-image: url("/images/delete.svg");
+    width: 28px;
+    height: 28px;
+    margin: 10px;
+    padding: 3px;
+    display: inline-block;
+    position: absolute;
+    cursor: pointer;
+}
+
+.products .container .box .remove:hover {
+    border-radius:50% ;
+    background-color: #5858587d;
+}
 .products .container .box .proddet{
     padding: 10px;
 }
-.products .container .box {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    width: 300px;
-}
+
 .products .container .box .addCart {
     width: 88%;
     padding: 8px 0;
@@ -498,6 +578,7 @@ header .login:hover {
     cursor: pointer;
     align-items: center;
     justify-content: center;
+    gap: 10px;
 }
 .products .container .box::before {
     content: "";
@@ -516,7 +597,7 @@ header .login:hover {
 	transition: .3s;
 }
 .products .container .box:hover .addCart {
-    display: inline-block;
+    display: inline-flex !important;
 }
 .products .container .box .avis {
     display: inline-flex;

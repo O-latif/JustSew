@@ -1,0 +1,30 @@
+<div class="inscription">
+    <div class="container">
+        <h1>Add a new Product !</h1>
+        <hr id="aa" style="margin-bottom: 70px;">
+        <div class="insContent">
+            
+            <form action="/Inscription" method="POST">
+                <label for="prod">Name</label>
+                <input name="name"  id="prod"  type="text">
+                <label for="size">Size</label>
+                <input name="size"  id="size" type="text">
+                <label for="forms">Forms</label>
+                <input name="forms"  id="forms" type="text">
+                <label for="price">Price</label>
+                <input name="price"  id="price" type="text">
+                <label for="gender">Gender</label>
+                <input name="gender"  id="gender" type="text">
+                <div class="file-input">
+                <h3>Add pictures for your product :</h3>
+                <input name="upload" type="file" id="file" class="file filepond">
+                <label for="file">
+                    <!-- Select file -->
+                    <!-- <p class="file-name"></p> -->
+                </label>
+                </div>
+                <input id="sub" type="submit" value = "Valider">
+            </form>
+        </div>
+    </div>
+</div>

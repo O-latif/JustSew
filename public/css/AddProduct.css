@@ -1,0 +1,64 @@
+:root {
+    --main-color: #A1CAF1;
+}
+body {
+    background-color: white;
+}
+.inscription form {
+    margin-bottom: 50px;
+}
+.inscription input:not(:last-of-type) {
+    display: block;
+    margin: 10px 0;
+    height: 40px;
+    width: 70%;
+}
+.inscription label {
+    display: block;
+    margin-bottom: 10px;
+}
+.inscription h3 {
+    margin-top: 50px;
+}
+.inscription hr {
+    margin-bottom: 20px;
+    border-color: #eeeeee5c;
+    position: relative;
+}
+.inscription #aa::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:40%;
+    height: 1px;
+    background-color:var(--main-color) ;
+}
+.inscription #sub {
+    margin-top: 50px;
+    margin-left: calc(50% - 55px);
+    border: 1px solid black;
+    border-radius: 0.25rem;
+    padding: 0;
+    width: 110px;
+    height: 40px;
+    font-size: 16px;
+    background-color: var(--main-color);
+    color: white;
+    cursor: pointer;
+}
+.inscription #sub:hover {
+    background-color: #548cb8;
+    transition-duration: .3s;
+}
+
+
+@media (max-width: 767px) {
+    .inscription input:not(:last-of-type) {
+        width: 100%;
+    }
+    .file-input label {
+        width: 50%;
+    }
+}
+

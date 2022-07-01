@@ -42,20 +42,19 @@
                     <div class="inp">
                         <input  type="password" placeholder="Confirm Password" name="mdpc" required>
                     </div>
-                <button class="action inscrir" type="submit">Create an account</button>
-                <span class="quest">Already a member ?</span>
-                <button class="login cnct"> <span class="bold">Sign in</span> using your JustSew account.</button>
+                    <button class="action inscrir" type="submit">Create an account</button>
+                    <span class="quest">Already a member ?</span>
+                    <button class="log cnct"> <span class="bold">Sign in</span> using your JustSew account.</button>
         
             </div>
         </form>
 </div>
 </div>
 <script>
-    let login = document.querySelector(".login");
-        login.addEventListener("click", function(e){
-            
+    let login = document.querySelector(".log");
+    console.log(login)
+        login.onclick = function(e) {
             e.preventDefault();
-            console.log("hhh");
-            location.assign("/login")
-        })
+            location.assign("/login");
+        }
 </script>

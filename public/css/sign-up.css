@@ -18,9 +18,7 @@
     display: flex;
     justify-content: center;
 }
-.back:hover {
-    color: var(--main-color);
-}
+
 
 .account form {
     width: 45%;
