@@ -6,15 +6,11 @@ const AuthController = require("../controllers/authController")
 
 
 
-router.get("/login", (req, res) => {
-    res.render("pages/login" , {title : "Connexion" , css : "login"})
-}) 
-// router.post("/login",AuthController.login) 
+router.get("/login", AuthController.login_get );
+router.post("/login",AuthController.login_post); 
 
-router.get("/sign-up",(req, res) => {
-    res.render("pages/sign-up" , {title : "Inscription" , css : "sign-up"})
-})
-// router.post("/sign-up",AuthController.register)
+router.get("/sign-up",AuthController.signUp_get);
+router.post("/sign-up",AuthController.signUp_post);
 // router.get("/logout",AuthController.logout)
 
 

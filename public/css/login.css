@@ -169,20 +169,6 @@ form .cnct {
     body {
         background-size: auto ;
     }
-    .account .close {
-        display: none;
-    }
-    .account .closeMini {
-        display: block !important;
-        position: absolute !important;
-        top: 1% !important;
-        right: 2% !important;
-        font-size: 30px;
-        cursor: pointer;
-        background-color: transparent;
-        border: none;
-    }
-    
     .container.acc {
         display: block;
         padding: 0;
@@ -210,14 +196,10 @@ form .cnct {
         width: 70%;
         padding: 30px;
     }
-    .account .close {
-        top: -6%;
-        right: -103% !important;
-    }
 }
-@media (max-width: 1220px) {
-    .account .close {
-        top: -6%;
-        right: -109%;
-    }
+.error {
+    height: 20px;
+    color: red;
+    margin-bottom: 10px;
+    font-size: 12px;
 }

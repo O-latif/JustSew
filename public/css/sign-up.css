@@ -173,24 +173,7 @@ form .circle::after {
     font-weight: bold;
     text-decoration: underline;
 }
-.account .close {
-    position: relative;
-    top: -7%;
-    right: -108%;
-    width: 30px;
-    height: 30px;
-    margin: 0;
-    border: 0;
-    padding: 0;
-    background-color: var(--main-color) ;
-    border-radius: 50%;
-    display: flex;
-    color: white;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
+
 form .cnct {
     border: none !important;
     background-color: transparent !important;
@@ -237,14 +220,12 @@ form .cnct {
         width: 70%;
         padding: 30px;
     }
-    .account .close {
-        top: -6%;
-        right: -103% !important;
-    }
+    
 }
-@media (max-width: 1220px) {
-    .account .close {
-        top: -6%;
-        right: -109%;
-    }
+
+.error {
+    height: 20px;
+    color: red;
+    margin-bottom: 10px;
+    font-size: 12px;
 }

@@ -1,6 +1,7 @@
 <div class="account">
     <div class="container acc">
         <form class="n1" action="/sign-up" method="POST">
+
             <div class="circles">
                 <div class="circle"></div>
                 <div class="circle"></div>
@@ -18,32 +19,48 @@
                     <div class="colLeft">
                         <label for="preom">First Name</label>
                         <div class="inp">
-                        <input id="prenom" type="text" placeholder="First Name" name="prenom" required>
+                        <input id="prenom" type="text" placeholder="First Name" name="fname" >
+                        </div>
+                        <div class="fnErr error" style="height: 20px;">
+
                         </div>
                     </div>
         
                     <div class="colRight">
                         <label for="nom">Last Name</label>
                         <div class="inp">
-                            <input id="nom" name="name"  type="text" placeholder="Last Name" required>
+                            <input id="nom" name="lname"  type="text" placeholder="Last Name" >
+                        </div>
+                        <div class="lnErr error" style="height: 20px;">
+
                         </div>
                     </div>
                     
                     <label for="email">Email</label>
                     <div class="inp">
-                        <input  type="email" placeholder="Email" name="email" required>
+                        <input  type="email" placeholder="Email" name="email" >
                     </div>
-        
+                    <div class="emailErr error" style="height: 20px;">
+                    </div>
+
                     <label for="mdp">Password</label>
                     <div class="inp">
-                        <input  type="password" placeholder="Password" name="mdp" required>
+                        <input  type="password" placeholder="Password" name="mdp" >
                     </div>
+                    <div class="mdpErr error" style="height: 20px;">
+                    </div>
+
                     <label for="mdpc">Confirm Password</label>
                     <div class="inp">
-                        <input  type="password" placeholder="Confirm Password" name="mdpc" required>
+                        <input  type="password" placeholder="Confirm Password" name="mdpc" >
                     </div>
+                    <div class="mdpcErr error" style="height: 20px;">
+                    </div>
+
                     <button class="action inscrir" type="submit">Create an account</button>
+
                     <span class="quest">Already a member ?</span>
+
                     <button class="log cnct"> <span class="bold">Sign in</span> using your JustSew account.</button>
         
             </div>
@@ -52,9 +69,52 @@
 </div>
 <script>
     let login = document.querySelector(".log");
-    console.log(login)
         login.onclick = function(e) {
             e.preventDefault();
             location.assign("/login");
         }
+
+    const form = document.querySelector("form");
+    const fnerr = document.querySelector(".fnErr");
+    const lnerr = document.querySelector(".lnErr");
+    const emerr = document.querySelector(".emailErr");
+    const mdperr = document.querySelector(".mdpErr");
+    const mdpcerr = document.querySelector(".mdpcErr");
+
+
+    form.addEventListener("submit", async(e) => {
+        e.preventDefault();
+
+        const fname = form.fname.value;
+        const lname = form.lname.value;
+        const email = form.email.value;
+        const mdp = form.mdp.value;
+
+        //reset errors 
+        fnerr.textContent = "";
+        lnerr.textContent = "";
+        emerr.textContent = "";
+        mdperr.textContent = "";
+
+        
+        try {
+            const res = await fetch("/sign-up", {
+                method : 'POST',
+                body : JSON.stringify({fname, lname, email, mdp}),
+                headers: {'Content-Type': 'application/json'},
+            });
+            const data = await res.json();
+            if(data.errors) {
+                fnerr.textContent = data.errors.fname;
+                lnerr.textContent = data.errors.lname;
+                emerr.textContent = data.errors.email;
+                mdperr.textContent = data.errors.mdp;
+            }
+            if(data.user) {
+                location.assign("/");
+            }
+        }catch(err) {
+            console.log(err)
+        }
+    })
 </script>

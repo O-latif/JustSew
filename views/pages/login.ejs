@@ -18,10 +18,16 @@
                 <div class="inp">
                     <input name = "logemail" type="email" placeholder="Email" required>
                 </div>
+                <div class="emailErr error" style="height: 20px;">
+                </div>
+
                 <label for="mdp">Password</label>
                 <div class="inp">
                     <input name = "logpwd" type="password" placeholder="Password" required>
                 </div>
+                <div class="mdpErr error" style="height: 20px;">
+                </div>
+                
                 <button class="action login">Sign-in</button>
                 <span class="quest">Not a member?</span>
                 <button class="signup cnct"> <span class="bold">Join</span> to unlock the best of JustSew.</button>
@@ -35,4 +41,40 @@
             e.preventDefault();
             location.assign("/sign-up");
         }
+
+        const form = document.querySelector("form");
+
+    const emerr = document.querySelector(".emailErr");
+    const mdperr = document.querySelector(".mdpErr");
+
+
+    form.addEventListener("submit", async(e) => {
+        e.preventDefault();
+
+        const logemail = form.logemail.value;
+        const logpwd = form.logpwd.value;
+        
+        //reset errors 
+        emerr.textContent = "";
+        mdperr.textContent = "";
+
+        
+        try {
+            const res = await fetch("/login", {
+                method : 'POST',
+                body : JSON.stringify({logemail, logpwd}),
+                headers: {'Content-Type': 'application/json'},
+            });
+            const data = await res.json();
+            if(data.errors) {
+                emerr.textContent = data.errors.email;
+                mdperr.textContent = data.errors.mdp;
+            }
+            if(data.user) {
+                location.assign("/");
+            }
+        }catch(err) {
+            console.log(err)
+        }
+    })
 </script>
