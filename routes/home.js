@@ -51,7 +51,7 @@ router.get("/",checkCart, async (req,res) => {
             wishProducts = await product.find({ _id: { $in: wishpro } });
         }
     }
-    res.render("../index",{css:"" ,all : r, Tproducts : resultT,Nproducts : resultN,act : 1, cartProd : cartArr,wish : wishProducts, title : "Sewing Patterns"});
+    res.render("pages/index",{css:"" ,all : r, Tproducts : resultT,Nproducts : resultN,act : 1, cartProd : cartArr,wish : wishProducts, title : "Sewing Patterns"});
 })
 
 
