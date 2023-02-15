@@ -89,6 +89,7 @@
         const lname = form.lname.value;
         const email = form.email.value;
         const mdp = form.mdp.value;
+        const mdpc = form.mdpc.value;
 
         //reset errors 
         fnerr.textContent = "";
@@ -97,24 +98,28 @@
         mdperr.textContent = "";
 
         
-        try {
-            const res = await fetch("/sign-up", {
-                method : 'POST',
-                body : JSON.stringify({fname, lname, email, mdp}),
-                headers: {'Content-Type': 'application/json'},
-            });
-            const data = await res.json();
-            if(data.errors) {
-                fnerr.textContent = data.errors.fname;
-                lnerr.textContent = data.errors.lname;
-                emerr.textContent = data.errors.email;
-                mdperr.textContent = data.errors.mdp;
+        if(mdp !== mdpc ) {
+            mdpcerr.textContent = "Password doesn't match !";
+        } else {
+            try {
+                const res = await fetch("/sign-up", {
+                    method : 'POST',
+                    body : JSON.stringify({fname, lname, email, mdp}),
+                    headers: {'Content-Type': 'application/json'},
+                });
+                const data = await res.json();
+                if(data.errors) {
+                    fnerr.textContent = data.errors.fname;
+                    lnerr.textContent = data.errors.lname;
+                    emerr.textContent = data.errors.email;
+                    mdperr.textContent = data.errors.mdp;
+                }
+                if(data.user) {
+                    location.assign("/");
+                }
+            } catch(err) {
+                console.log(err)
             }
-            if(data.user) {
-                location.assign("/");
-            }
-        }catch(err) {
-            console.log(err)
         }
     })
 </script>

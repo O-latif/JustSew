@@ -7,7 +7,7 @@
     </div>
 </div>
 <!-- end landing -->
-<!-- start products  -->
+<!-- start Tproducts  -->
 <div class="products">
     <div class="container">
         <div class="title" style="width: 100%;display: flex;justify-content: center;margin-bottom: 40px;">
@@ -15,7 +15,7 @@
         </div>
         <div class="showType">
                 <select name="show" id="show">
-                        <option value="date">RELEASE DATE</option>
+                        <option value="date" selected>RELEASE DATE</option>
                         <option value="name">PRODUCT NAME</option>
                 </select>
                 <div class="type">
@@ -24,309 +24,242 @@
                 </div>
         </div>
         <div class="all">
-            <div class="box">
-                <div class="prodPic">
-                        <div class="remove"></div>
-                    <a href="https://placeholder.com"></a>
-                    <img src= "https://via.placeholder.com/300x400" alt="">
-                    <button class="addCart"> <img src="/images/whitecart.svg" alt="" width="30px" height="30px"> ADD TO CART </button>
-                </div> 
-                <div class="proddet">
-                    <h3 class="prodName">name</h3>
-                <div class="avis">
-                    <div class="evaluation" style="display: inline;">
-                        <img src="/images/star.svg" alt="" width="30px" height="30px">
-                        <img src="/images/star.svg" alt="" width="30px" height="30px">
-                        <img src="/images/star.svg" alt="" width="30px" height="30px">
-                        <img src="/images/star.svg" alt="" width="30px" height="30px">
-                        <img src="/images/star.svg" alt="" width="30px" height="30px">
-                    </div>
-                    <span class="views">(0)</span>
+            
+                <div class="byDate">
+                    <% if(Tproducts.length >= 1) {%>
                 
-                </div>
-                <div class="additional" style="width: 100%;display: none;">
-                    <p>name</p>
-                    <p>PDF Pattern</p>
-                    <p>sizes: ????</p>
-                    <p>Forms : ??????</p>
-                </div>
-                <h4>$12.99</h4>
-                </div>
-            </div>
-            <div class="box">
-                    <div class="prodPic">
-                            <div class="remove"></div>
-                        <a href="https://placeholder.com"></a>
-                        <img src= "https://via.placeholder.com/300x400" alt="">
-                        <button class="addCart"> <img src="/images/whitecart.svg" alt="" width="30px" height="30px"> ADD TO CART </button>
-                    </div> 
-                    <div class="proddet">
-                        <h3 class="prodName">name</h3>
-                    <div class="avis">
-                        <div class="evaluation" style="display: inline;">
-                            <img src="/images/star.svg" alt="" width="30px" height="30px">
-                            <img src="/images/star.svg" alt="" width="30px" height="30px">
-                            <img src="/images/star.svg" alt="" width="30px" height="30px">
-                            <img src="/images/star.svg" alt="" width="30px" height="30px">
-                            <img src="/images/star.svg" alt="" width="30px" height="30px">
-                        </div>
-                        <span class="views">(0)</span>
-                    
-                    </div>
-                    <div class="additional" style="width: 100%;display: none;">
-                        <p>name</p>
-                        <p>PDF Pattern</p>
-                        <p>sizes: ????</p>
-                        <p>Forms : ??????</p>
-                    </div>
-                    <h4>$12.99</h4>
-                    </div>
-                </div>
-    <div class="box">
-    <div class="prodPic">
-            <div class="remove"></div>
-        <a href="https://placeholder.com"></a>
-        <img src= "https://via.placeholder.com/300x400" alt="">
-        <button class="addCart"> <img src="/images/whitecart.svg" alt="" width="30px" height="30px"> ADD TO CART </button>
-    </div> 
-    <div class="proddet">
-        <h3 class="prodName">name</h3>
-    <div class="avis">
-        <div class="evaluation" style="display: inline;">
-            <img src="/images/star.svg" alt="" width="30px" height="30px">
-            <img src="/images/star.svg" alt="" width="30px" height="30px">
-            <img src="/images/star.svg" alt="" width="30px" height="30px">
-            <img src="/images/star.svg" alt="" width="30px" height="30px">
-            <img src="/images/star.svg" alt="" width="30px" height="30px">
-        </div>
-        <span class="views">(0)</span>
+                        <% for( let k = 0; k < Tproducts.length ; k++ ) { %>
+                        <div class="box " onclick="location.href='/product/<%= Tproducts[k].id %>'">
+                                <div class="prodPic">
+                                    <form action="addToWishlist/?_method=PUT" method="post" style="width: 0; height: 0;">
+                                        <input type="hidden" name="wishId" value="<%= Tproducts[k].id %> ">
+                                        <button type="submit"><img class= "wishheart" src="/images/heart.svg" alt="wishlist"></button>
+                                    </form>
+                                    
+                                        <% if(user) { %>
+                                            <% if(user.owner === true) { %>
+                                                <form action="/delete_product" method="post" class="delt">
+                                                    <input type="hidden" name= "del" value="<%= Tproducts[k].id %> ">
+                                                    <button type="submit" style="border: none; background: none;display: block;"><div class="remove"></div></button>
+                                                </form>
+                                        
+                                            <% } %>
+                                        <% } %>
+                                    
+                                    <img src= "<%= Tproducts[k].path1 %>" alt="<%= Tproducts[k].name %>" width="300px" height="400px">
+                                    
+                                    <form action="addToCart/?_method=PUT" method="POST" id="add2cart">
+                                        <input type="hidden" name="id" value="<%= Tproducts[k].id %>">
+                                        <button class="addCart" type="submit"> <img src="/images/whitecart.svg" alt="" width="30px" height="30px"> ADD TO CART </button>
+                                    </form>
+                                    
     
-    </div>
-    <div class="additional" style="width: 100%;display: none;">
-        <p>name</p>
-        <p>PDF Pattern</p>
-        <p>sizes: ????</p>
-        <p>Forms : ??????</p>
-    </div>
-    <h4>$12.99</h4>
-    </div>
-</div>
-<div class="box">
-        <div class="prodPic">
-                <div class="remove"></div>
-            <a href="https://placeholder.com"></a>
-            <img src= "https://via.placeholder.com/300x400" alt="">
-            <button class="addCart"> <img src="/images/whitecart.svg" alt="" width="30px" height="30px"> ADD TO CART </button>
-        </div> 
-        <div class="proddet">
-            <h3 class="prodName">name</h3>
-        <div class="avis">
-            <div class="evaluation" style="display: inline;">
-                <img src="/images/star.svg" alt="" width="30px" height="30px">
-                <img src="/images/star.svg" alt="" width="30px" height="30px">
-                <img src="/images/star.svg" alt="" width="30px" height="30px">
-                <img src="/images/star.svg" alt="" width="30px" height="30px">
-                <img src="/images/star.svg" alt="" width="30px" height="30px">
-            </div>
-            <span class="views">(0)</span>
-        
-        </div>
-        <div class="additional" style="width: 100%;display: none;">
-            <p>name</p>
-            <p>PDF Pattern</p>
-            <p>sizes: ????</p>
-            <p>Forms : ??????</p>
-        </div>
-        <h4>$12.99</h4>
-        </div>
-    </div>
-    <div class="box">
-            <div class="prodPic">
-                    <div class="remove"></div>
-                <a href="https://placeholder.com"></a>
-                <img src= "https://via.placeholder.com/300x400" alt="">
-                <button class="addCart"> <img src="/images/whitecart.svg" alt="" width="30px" height="30px"> ADD TO CART </button>
-            </div> 
-            <div class="proddet">
-                <h3 class="prodName">name</h3>
-            <div class="avis">
-                <div class="evaluation" style="display: inline;">
-                    <img src="/images/star.svg" alt="" width="30px" height="30px">
-                    <img src="/images/star.svg" alt="" width="30px" height="30px">
-                    <img src="/images/star.svg" alt="" width="30px" height="30px">
-                    <img src="/images/star.svg" alt="" width="30px" height="30px">
-                    <img src="/images/star.svg" alt="" width="30px" height="30px">
+                                </div> 
+                                <div class="proddet">
+                                    <h3 class="prodName"><%= Tproducts[k].name %></h3>
+                                <div class="avis">
+                                    <div class="evaluation" style="display: inline;">
+                                        <% for(let i = 0 ; i < Tproducts[k].moyen ; i++) { %>
+                                            <img src="/images/star (1).svg" alt="" width="30px" height="30px">
+                                        <%}%>
+                                        <% for(let i = 0 ; i < (5 - Tproducts[k].moyen) ; i++) { %>
+                                            <img src="/images/star.svg" alt="" width="30px" height="30px">
+                                        <%}%>
+                                    </div>
+                                    <span class="views">(<%= Tproducts[k].reviews %>)</span>
+                        
+                                
+                                </div>
+                                <div class="additional" style="width: 100%;display: none;">
+                                    <p><%= Tproducts[k].name %></p>
+                                    <p>PDF Pattern</p>
+                                    <p>sizes: <%= Tproducts[k].size %> </p>
+                                    <p>Forms : <%= Tproducts[k].forms %> </p>
+                                </div>
+                                <h4>$<%= Tproducts[k].price %></h4>
+                                </div>
+                            </div>
+                        
+                            
+                    <% } %>
+                    <%} else {%>
+                        <P>NO Patterns Found </P>
+                    <%}%>
                 </div>
-                <span class="views">(0)</span>
-            
-            </div>
-            <div class="additional" style="width: 100%;display: none;">
-                <p>name</p>
-                <p>PDF Pattern</p>
-                <p>sizes: ????</p>
-                <p>Forms : ??????</p>
-            </div>
-            <h4>$12.99</h4>
-            </div>
-        </div>
-    <div class="box">
-            <div class="prodPic">
-                    <div class="remove"></div>
-                <a href="https://placeholder.com"></a>
-                <img src= "https://via.placeholder.com/300x400" alt="">
-                <button class="addCart"> <img src="/images/whitecart.svg" alt="" width="30px" height="30px"> ADD TO CART </button>
-            </div> 
-            <div class="proddet">
-                <h3 class="prodName">name</h3>
-            <div class="avis">
-                <div class="evaluation" style="display: inline;">
-                    <img src="/images/star.svg" alt="" width="30px" height="30px">
-                    <img src="/images/star.svg" alt="" width="30px" height="30px">
-                    <img src="/images/star.svg" alt="" width="30px" height="30px">
-                    <img src="/images/star.svg" alt="" width="30px" height="30px">
-                    <img src="/images/star.svg" alt="" width="30px" height="30px">
-                </div>
-                <span class="views">(0)</span>
-            
-            </div>
-            <div class="additional" style="width: 100%;display: none;">
-                <p>name</p>
-                <p>PDF Pattern</p>
-                <p>sizes: ????</p>
-                <p>Forms : ??????</p>
-            </div>
-            <h4>$12.99</h4>
-            </div>
-        </div>
-        <div class="box">
-                <div class="prodPic">
-                        <div class="remove"></div>
-                    <a href="https://placeholder.com"></a>
-                    <img src= "https://via.placeholder.com/300x400" alt="">
-                    <button class="addCart"> <img src="/images/whitecart.svg" alt="" width="30px" height="30px"> ADD TO CART </button>
-                </div> 
-                <div class="proddet">
-                    <h3 class="prodName">name</h3>
-                <div class="avis">
-                    <div class="evaluation" style="display: inline;">
-                        <img src="/images/star.svg" alt="" width="30px" height="30px">
-                        <img src="/images/star.svg" alt="" width="30px" height="30px">
-                        <img src="/images/star.svg" alt="" width="30px" height="30px">
-                        <img src="/images/star.svg" alt="" width="30px" height="30px">
-                        <img src="/images/star.svg" alt="" width="30px" height="30px">
-                    </div>
-                    <span class="views">(0)</span>
+                <div class="byName" style="display: none;">
+                    <% if(Nproducts.length >= 1) {%>
                 
+                        <% for( let k = 0; k < Nproducts.length ; k++ ) { %>
+                        <div class="box" onclick="location.href='/product/<%= Nproducts[k].id %>'">
+                                <div class="prodPic">
+                                    <form action="addToWishlist/?_method=PUT" method="post" style="width: 0; height: 0;">
+                                        <input type="hidden" name="wishId" value="<%= Nproducts[k].id %> ">
+                                        <button type="submit"><img class= "wishheart" src="/images/heart.svg" alt="wishlist"></button>
+                                    </form>
+                                    
+                                        <% if(user) { %>
+                                            <% if(user.owner === true) { %>
+                                                <div class="remove"></div>
+                                            <% } %>
+                                        <% } %>
+                                    
+                                    <img src= "<%= Nproducts[k].path1 %>" alt="<%= Nproducts[k].name %>" width="300px" height="400px">
+                                    
+                                    <form action="addToCart/?_method=PUT" method="POST" id="add2cart">
+                                        <input type="hidden" name="id" value="<%= Nproducts[k].id %>">
+                                        <button class="addCart" type="submit"> <img src="/images/whitecart.svg" alt="" width="30px" height="30px"> ADD TO CART </button>
+                                    </form>
+                                    
+    
+                                </div> 
+                                <div class="proddet">
+                                    <h3 class="prodName"><%= Nproducts[k].name %></h3>
+                                <div class="avis">
+                                    <div class="evaluation" style="display: inline;">
+                                        <% for(let i = 0 ; i < Nproducts[k].moyen ; i++) { %>
+                                            <img src="/images/star (1).svg" alt="" width="30px" height="30px">
+                                        <%}%>
+                                        <% for(let i = 0 ; i < (5 - Nproducts[k].moyen) ; i++) { %>
+                                            <img src="/images/star.svg" alt="" width="30px" height="30px">
+                                        <%}%>
+                                    </div>
+                                    <span class="views">(<%= Nproducts[k].reviews %>)</span>
+                        
+                                
+                                </div>
+                                <div class="additional" style="width: 100%;display: none;">
+                                    <p><%= Nproducts[k].name %></p>
+                                    <p>PDF Pattern</p>
+                                    <p>sizes: <%= Nproducts[k].size %> </p>
+                                    <p>Forms : <%= Nproducts[k].forms %> </p>
+                                </div>
+                                <h4>$<%= Nproducts[k].price %></h4>
+                                </div>
+                            </div>
+                        
+                            
+                    <% } %>
+                    <%} else {%>
+                        <P>NO Patterns Found </P>
+                    <%}%>
                 </div>
-                <div class="additional" style="width: 100%;display: none;">
-                    <p>name</p>
-                    <p>PDF Pattern</p>
-                    <p>sizes: ????</p>
-                    <p>Forms : ??????</p>
-                </div>
-                <h4>$12.99</h4>
-                </div>
-            </div>
-    <div class="box">
-            <div class="prodPic">
-                    <div class="remove"></div>
-                <a href="https://placeholder.com"></a>
-                <img src= "https://via.placeholder.com/300x400" alt="">
-                <button class="addCart"> <img src="/images/whitecart.svg" alt="" width="30px" height="30px"> ADD TO CART </button>
-            </div> 
-            <div class="proddet">
-                <h3 class="prodName">name</h3>
-            <div class="avis">
-                <div class="evaluation" style="display: inline;">
-                    <img src="/images/star.svg" alt="" width="30px" height="30px">
-                    <img src="/images/star.svg" alt="" width="30px" height="30px">
-                    <img src="/images/star.svg" alt="" width="30px" height="30px">
-                    <img src="/images/star.svg" alt="" width="30px" height="30px">
-                    <img src="/images/star.svg" alt="" width="30px" height="30px">
-                </div>
-                <span class="views">(0)</span>
+            <% if(user) { %>
+                <% if(user.owner === true) { %>
+                    <div class="leader">
+                    <img src="/images/add.svg" alt="" width="120px" height="120px">
+                    </div>
+                    <script>
+                        let addProduct = document.querySelector('.leader');
+
+                        addProduct.onclick = () => location.assign("/addProduct");
+                    </script>
+                <% } %>
+            <% } %>
             
-            </div>
-            <div class="additional" style="width: 100%;display: none;">
-                <p>name</p>
-                <p>PDF Pattern</p>
-                <p>sizes: ????</p>
-                <p>Forms : ??????</p>
-            </div>
-            <h4>$12.99</h4>
-            </div>
-        </div>
-        <div class="box">
-                <div class="prodPic">
-                        <div class="remove"></div>
-                    <a href="https://placeholder.com"></a>
-                    <img src= "https://via.placeholder.com/300x400" alt="">
-                    <button class="addCart"> <img src="/images/whitecart.svg" alt="" width="30px" height="30px"> ADD TO CART </button>
-                </div> 
-                <div class="proddet">
-                    <h3 class="prodName">name</h3>
-                <div class="avis">
-                    <div class="evaluation" style="display: inline;">
-                        <img src="/images/star.svg" alt="" width="30px" height="30px">
-                        <img src="/images/star.svg" alt="" width="30px" height="30px">
-                        <img src="/images/star.svg" alt="" width="30px" height="30px">
-                        <img src="/images/star.svg" alt="" width="30px" height="30px">
-                        <img src="/images/star.svg" alt="" width="30px" height="30px">
-                    </div>
-                    <span class="views">(0)</span>
-                
-                </div>
-                <div class="additional" style="width: 100%;display: none;">
-                    <p>name</p>
-                    <p>PDF Pattern</p>
-                    <p>sizes: ????</p>
-                    <p>Forms : ??????</p>
-                </div>
-                <h4>$12.99</h4>
-                </div>
-            </div>
-        <div class="box">
-                <div class="prodPic">
-                        <div class="remove"></div>
-                    <a href="https://placeholder.com"></a>
-                    <img src= "https://via.placeholder.com/300x400" alt="">
-                    <button class="addCart"> <img src="/images/whitecart.svg" alt="" width="30px" height="30px"> ADD TO CART </button>
-                </div> 
-                <div class="proddet">
-                    <h3 class="prodName">name</h3>
-                <div class="avis">
-                    <div class="evaluation" style="display: inline;">
-                        <img src="/images/star.svg" alt="" width="30px" height="30px">
-                        <img src="/images/star.svg" alt="" width="30px" height="30px">
-                        <img src="/images/star.svg" alt="" width="30px" height="30px">
-                        <img src="/images/star.svg" alt="" width="30px" height="30px">
-                        <img src="/images/star.svg" alt="" width="30px" height="30px">
-                    </div>
-                    <span class="views">(0)</span>
-                
-                </div>
-                <div class="additional" style="width: 100%;display: none;">
-                    <p>name</p>
-                    <p>PDF Pattern</p>
-                    <p>sizes: ????</p>
-                    <p>Forms : ??????</p>
-                </div>
-                <h4>$12.99</h4>
-                </div>
-            </div>
-            <div class="leader">
-                <img src="/images/add.svg" alt="" width="120px" height="120px">
-            </div>
         </div>
         <div class="pages">
             <div class="numbers">
-                <p> <a href="#" class="active">1</a> </p>
-                <p> <a href="#">2</a> </p>
-                <p> <a href="#"><img src="/images/next.svg" alt="" style="width: 19px; height: 19px;"></a> </p>
+                <form action="/numerating" method="post">
+                    
+                    <% if (all.length > 1) { %>
+                        <% let nums = Math.ceil(all.length/3) %>
+                        
+                    <button type="submit" id="icn2"><i class="fa-sharp fa-solid fa-angle-left" style="font-size: 12px;"></i></button>
+                    <button type="submit" class="buttn">1 </button>
+
+                            <% for( let i = 2; i <= nums; i++ ) { %>
+                                <button type="submit" class="buttn"><%= i %> </button>
+                                <% if (i === 3 && nums > 3) { %>
+                                <p>... </p>
+                                <% } %>
+                            <% } %>
+                            <input type="hidden" name="val" value="1">
+
+                            <button type="submit" id="icn"><i class="fa-solid fa-angle-right" style="font-size: 12px;"></i></button>
+                    <% } %>
+                </form>
+                
+                <script>
+                    
+                    let but = document.querySelectorAll(".numbers form button.buttn");
+                    let icn = document.querySelector(".numbers #icn");
+                    let icn2 = document.querySelector(".numbers #icn2");
+                    let len = document.querySelectorAll(".numbers .buttn").length;
+                    let clck;
+
+                    removeAct();
+
+                    if(len > 1) {
+                        icn.style.display = "block";
+                        icn2.style.display = "block";
+
+                    } else {
+                        icn.style.display = "none";
+                        icn2.style.display = "none";
+                    }
+
+                    but.forEach((el , i) => {
+                                if(el.classList.contains("active")) {
+                                    clck = i;
+                                    if(i === (len - 1)) {
+                                        icn.style.display = "none";
+                                    } else if (i === 0) {
+                                        icn2.style.display = "none";
+                                    }
+                                }
+                            })
+
+                    document.querySelector(`.numbers .buttn:nth-of-type(${len + 1})`).style.cssText = "display : block";
+
+                    if(document.querySelector(".numbers form input").value < Math.ceil(<%= all.length/3 %>)) {
+                            icn.onclick = () => {
+
+                            but.forEach((el , i) => {
+                                if(el.classList.contains("active")) {
+                                    clck = i;
+                                }
+                            })
+                            but[clck + 1].click();
+                        }
+                    }
+                    console.log("val : " + document.querySelector(".numbers form input").value) ;
+                    if(clck > 1) {
+                            icn2.onclick = () => {
+                            
+                                but.forEach((el , i) => {
+                                    if(el.classList.contains("active")) {
+                                        clck = i;
+                                    }
+                                })
+                                console.log(clck)
+                                but[clck - 1].click();
+                        }
+                    }
+                    
+                    but.forEach((el ,i) => {
+                        el.onclick = () => {
+                            removeAct();
+                            
+                            document.querySelector(".numbers form input").value = el.textContent;
+                            
+                            
+                        }
+                    })
+                    function removeAct () {
+                        but.forEach((elm , i) => {
+                            elm.classList.remove("active");
+                            if((i+1) === <%= act %>) {
+                            elm.classList.add("active");
+                        }
+                            })
+                        
+                    }
+                </script>
+
             </div>
         </div>
     </div>
 </div>
-<!-- end products  -->
+<!-- end Tproducts  -->
 
 <script src="/javascript/home.js"></script>

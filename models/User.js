@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const {isEmail} = require("validator")
 const bcrypt = require("bcrypt");
+const { Schema } = mongoose;
 
 const userSchema = new mongoose.Schema({
     fname:{
@@ -22,7 +23,17 @@ const userSchema = new mongoose.Schema({
         type : String,
         required : [true , "Please enter a Passsword "],
         minlength : [6 , "Minimum Password length is 6 characters "]
+    },
+    owner:{
+        type:Boolean,
+        default : false
+    },
+    wishlist:{
+        type : String,
+        default : ""
     }
+    
+    
 },{timestamps: true});
 
 userSchema.pre("save",async function(next) {

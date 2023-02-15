@@ -1,0 +1,202 @@
+<!-- start product -->
+<div class="product">
+    <div class="container">
+        
+        <div class="prodDetails">
+            <button class="prev disabled"><i class="fa-solid fa-angle-up"></i></button>
+            <div class="images">
+                
+                <% if (prod.path1 !== "data:JPG;charset=utf-8;base64,") { %>
+                    <img src="<%= prod.path1 %>" alt="" class="active">
+                <% } %> 
+                <% if (prod.path2 !== "data:JPG;charset=utf-8;base64,") { %>
+                    <img src="<%= prod.path2 %>" alt="">
+                    <% } %> 
+                <% if (prod.path3 !== "data:JPG;charset=utf-8;base64,") { %>
+                    <img src="<%= prod.path3 %>" alt="">
+                    <% } %> 
+                <% if (prod.path4 !== "data:JPG;charset=utf-8;base64,") { %>
+                    <img src="<%= prod.path4 %>" alt="">
+                    <% } %> 
+                <% if (prod.path5 !== "data:JPG;charset=utf-8;base64,") { %>
+                    <img src="<%= prod.path5 %>" alt="">
+                    <% } %> 
+                <% if (prod.path6 !== "data:JPG;charset=utf-8;base64,") { %>
+                    <img src="<%= prod.path6 %>" alt="">
+                    <% } %> 
+                <% if (prod.path7 !== "data:JPG;charset=utf-8;base64,") { %>
+                    <img src="<%= prod.path7 %>" alt="">
+                    <% } %> 
+                <% if (prod.path8 !== "data:JPG;charset=utf-8;base64,") { %>
+                    <img src="<%= prod.path8 %>" alt="">
+                    <% } %> 
+                
+            </div>
+
+            <button class="next"><i class="fa-solid fa-angle-down"></i></button>
+
+            <div class="prod">
+                    <% if (prod.path1 !== "data:JPG;charset=utf-8;base64,") { %>
+                        <img src="<%= prod.path1 %>" alt="" class="active" width="100%" height="100%">
+                    <% } %> 
+                    <% if (prod.path2 !== "data:JPG;charset=utf-8;base64,") { %>
+                        <img src="<%= prod.path2 %>" alt="" width="100%" height="100%">
+                        <% } %> 
+                    <% if (prod.path3 !== "data:JPG;charset=utf-8;base64,") { %>
+                        <img src="<%= prod.path3 %>" alt="" width="100%" height="100%">
+                        <% } %> 
+                    <% if (prod.path4 !== "data:JPG;charset=utf-8;base64,") { %>
+                        <img src="<%= prod.path4 %>" alt="" width="100%" height="100%">
+                        <% } %> 
+                    <% if (prod.path5 !== "data:JPG;charset=utf-8;base64,") { %>
+                        <img src="<%= prod.path5 %>" alt="" width="100%" height="100%">
+                        <% } %> 
+                    <% if (prod.path6 !== "data:JPG;charset=utf-8;base64,") { %>
+                        <img src="<%= prod.path6 %>" alt="" width="100%" height="100%">
+                        <% } %> 
+                    <% if (prod.path7 !== "data:JPG;charset=utf-8;base64,") { %>
+                        <img src="<%= prod.path7 %>" alt="" width="100%" height="100%">
+                        <% } %> 
+                    <% if (prod.path8 !== "data:JPG;charset=utf-8;base64,") { %>
+                        <img src="<%= prod.path8 %>" alt="" width="100%" height="100%">
+                        <% } %> 
+            </div>
+            <div class="details">
+                <h2><%= prod.name %> </h2>
+                        
+                    <div class="avis">
+                        <div class="evaluation" style="display: inline;">
+                            <% for(let i = 0 ; i < moyen ; i++) { %>
+                                <img src="/images/star (1).svg" alt="" width="30px" height="30px">
+                            <%}%>
+                            <% for(let i = 0 ; i < (5 - moyen) ; i++) { %>
+                                <img src="/images/star.svg" alt="" width="30px" height="30px">
+                            <%}%>
+                            
+                        </div>
+                        <span class="views">(<%= prod.reviews %>)</span>
+                    
+                    </div>
+                    <div class="inline">
+                        <h4><%= prod.price %> </h4>
+                        <button class="addCart"> <img src="/images/whitecart.svg" alt="" width="30px" height="30px"> ADD TO CART </button>
+                    </div>
+                    <ul class="additional" style="width: 100%;">
+                        <li><%= prod.name %> </li>
+                        <li>PDF Pattern</li>
+                        <li>sizes: <%= prod.size %>  </li>
+                        <li>Forms : <%= prod.forms %>  </li>
+                    </ul>
+                    <a href="#" id="charts">JustSew size charts </a>
+                    <div class="share">
+                            <p>Share on : </p> 
+                            <a href="https://twitter.com/intent/tweet?url=http://localhost:5000/product" target="blank"><div class="icon"><i class="fa-brands fa-twitter"></i></div></a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost:5000%2Fproduct" target="blank"><div class="icon"><i class="fa-brands fa-facebook-f"></i></div></a> 
+                            <a href=""><div class="icon"><i class="fa-brands fa-instagram"></i></div></a>
+                    </div>
+                    <% if(user) { %>
+                        <% if(user.owner === true) { %>
+                            <form action="/delete_product" method="post" id="delt">
+                                <input type="hidden" name= "del" value="<%= prod.id %>">
+                                <button type="submit" style="border: none; background: #dedede; color: #000;border-radius: 20px;
+                                margin-left: 40%;"><div class="remove">delete</div></button>
+                            </form>
+                        <% }} %> 
+            </div>  
+        </div>
+        
+        <div class="slider-container">
+            <div class="slider">
+                <% if (prod.path1 !== "data:JPG;charset=utf-8;base64,") { %>
+                    <img src="<%= prod.path1 %>" alt="" class="active" width="100%" height="100%">
+                <% } %> 
+                <% if (prod.path2 !== "data:JPG;charset=utf-8;base64,") { %>
+                    <img src="<%= prod.path2 %>" alt="" width="100%" height="100%">
+                    <% } %> 
+                <% if (prod.path3 !== "data:JPG;charset=utf-8;base64,") { %>
+                    <img src="<%= prod.path3 %>" alt="" width="100%" height="100%">
+                    <% } %> 
+                <% if (prod.path4 !== "data:JPG;charset=utf-8;base64,") { %>
+                    <img src="<%= prod.path4 %>" alt="" width="100%" height="100%">
+                    <% } %> 
+                <% if (prod.path5 !== "data:JPG;charset=utf-8;base64,") { %>
+                    <img src="<%= prod.path5 %>" alt="" width="100%" height="100%">
+                    <% } %> 
+                <% if (prod.path6 !== "data:JPG;charset=utf-8;base64,") { %>
+                    <img src="<%= prod.path6 %>" alt="" width="100%" height="100%">
+                    <% } %> 
+                <% if (prod.path7 !== "data:JPG;charset=utf-8;base64,") { %>
+                    <img src="<%= prod.path7 %>" alt="" width="100%" height="100%">
+                    <% } %> 
+                <% if (prod.path8 !== "data:JPG;charset=utf-8;base64,") { %>
+                    <img src="<%= prod.path8 %>" alt="" width="100%" height="100%">
+                    <% } %>
+            </div>
+            <div class="slider-bulls">
+                <span id="indicators" class="indicators">
+                    
+                </span>
+            </div>
+        </div>
+        <div class="Reviews">
+                <div class="title" style="width: 100%; display: flex; justify-content: center; margin-bottom: 40px;">
+                    <h1>Reviews</h1>
+                </div>
+                <h3>what people say</h3>
+                <% if (comments.length >= 1) { %>
+                    <% comments.forEach(com => { %>
+                        <div class="cmnt">
+                            <div class="person" style="max-height: 100px;">
+                                <img src="../images/account_circle_FILL0_wght400_GRAD0_opsz48.svg" alt="" width="50px" height="50px" style="border-radius: 50%; border: .5px solid black;">
+                                <p class="nom" style="margin-top:5px ;"> <%= com.userFName %> </p>
+                                <p class="nom" style="margin-top:5px ;"> <%= com.userLName %> </p>
+                                
+                                <div class="eval">
+                                    <!-- <img src="../images/mode_comment_black_24dp.svg" alt="" width="20px" height= "20px"> -->
+                                    <!-- <span class="number">n</span> Avis -->
+                                </div>
+                            </div>
+                            <div class="comntContent">
+                                    <div class="midl">
+                                            <div class="evaluation" style="display: inline;">
+                                                <% for( let i = 0; i < com.note; i++ ) { %>
+                                                    <img src="/images/star (1).svg" alt="" width="24px" height="24px">
+                                                <% } %>
+                                                <% for( let j = (com.note); j < 5; j++ ) { %>
+                                                    <img src="/images/star.svg" alt="" width="24px" height="24px">
+                                                <% } %>
+                                                
+                                            </div> 
+                                                <p class="date">publié le  <%= com.date %> </p>
+                                    </div>
+                                    <p style="margin: 10px 0 0 5px;"> <%= com.content %>  </p>
+                            </div>
+                        </div>
+                    <% }) %>
+                <% } else {%>
+                    <p style="width: 100%; text-align: center; font-weight: bold; font-size: 26px; color: #aaa;">There is No Comments</p>
+                <% } %> 
+                
+                <h3>Your Review </h3>
+            
+                    <div class="bigeval">
+                        <div id="1" class="image" style="background-image: url('../images/star.svg');background-size: contain;"></div>
+                        <div id="2" class="image" style="background-image: url('../images/star.svg');background-size: contain;"></div>
+                        <div id="3" class="image" style="background-image: url('../images/star.svg');background-size: contain;"></div>
+                        <div id="4" class="image" style="background-image: url('../images/star.svg');background-size: contain;"></div>
+                        <div id="5" class="image" style="background-image: url('../images/star.svg');background-size: contain;"></div>
+                    </div>
+                    <form action="/product/<%=prod._id%>?_method=PUT" method="POST">
+                        <input type="hidden" name = "note" id="count" value="0">
+                        <textarea id = "texar" rows="10" name="description" placeholder="What do you think about this product" style="width: 100%;" ></textarea>  
+                        <div class="buttons">
+                            <button>Submit</button>
+                        </div>
+                    </form>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-- start product -->
+<script src="/javascript/prod.js"></script>

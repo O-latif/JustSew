@@ -5,49 +5,92 @@
                 <img src="/images/logo.png" alt="" width="55px" height="55px">
             </div>
             <div class="search">
-                <div class="searchInput">
-                    <button class="but"> <img src="/images/search_black_24dp.svg" alt="" style="padding-right: 5px;"></button>
-                    <input type="text" placeholder="Search ...">
+                <div class="searchInput" >
+                    <form action="/search" method="get">
+                        <button class="but frm" style="margin: 0;"> <img src="/images/search_black_24dp.svg" alt="" style="padding-right: 5px;"></button>
+                        <input type="text" name="sar" placeholder="Search ..." oninput="sendData(this)">
+                    </form>
+                    
+                </div>
+                <div class="result">
+
                 </div>
             </div>
             <div class="icons">
-                <div id="user">
+                <div class="user">
                     <button class="but"><img src="/images/user.png" alt="" width="30px" height="30px"></button>
+                    <% if(user) {%>
+                    <div class="userAccount" style="display: none;">
+                        <p>Welcome, <%= user.fname%></p>
+                        <button class="logout">logout</button>
+                    </div>
+                    <script>
+                        let logout = document.querySelector("header .icons .userAccount .logout");
+
+                        logout.onclick = () => location.assign("/logout");
+                    </script>
+                    <%}%>
                 </div>
-                <div id="wishlist">
+                <div class="wishlist">
                     <button class="but"><img src="/images/heart.svg" alt="" width="30px" height="30px"></button>
                 </div>
                 <div style="position: relative;">
+                    
                     <button class="but" id="cart"><img src="/images/cart.svg" alt="" width="40px" height="40px"></button>
                     <div class="shoppingCart">
+                        <% if(!locart || cartProd.length < 1){ %>
                         <p style ="color : #aaa">You have no items in your shopping cart.</p>
-                        <!-- <div class="num" style="margin-bottom: 10px;font-weight: bold;">(n) item(s)</div>
-                        <div class="total" style="margin-bottom: 20px;font-weight: bold;">cart subtotal : $120</div>
-                        <div class="items">
-                            <div class="box" style="width: 230px; min-height: 300px;padding: 20px;box-shadow: 0 0 5px rgb(0 0 0 / 25%)">
-                                <div class="prodPic" style = "display:flex;justify-content : center"><a href="https://placeholder.com"></a><img src= "https://via.placeholder.com/150x150" alt="">
-                                </div> 
-                                <div class="proddet">
-                                    <h3 class="prodName">name</h3>
-                                    <div class="showadd" style="display: flex; align-items: center; cursor: pointer;">
-                                        See Details <img src="/images/down.svg" alt="" width="20px" height="20px">
-                                    </div>
-                                    <div class="additional" style="width: 100%;display: none;">
-                                        <p>name</p>
-                                        <p>PDF Pattern</p>
-                                        <p>sizes : ????</p>
-                                        <p>Forms : ??????</p>
-                                    </div>
-                                    <h4 >$12.99</h4>
-                                    <label for="qty" >Quantity : </label>
-                                    <input type="text" name="qty" value="1" style="width: 30px; text-align: center;">
-                                    <button class="remove" style="width: 100%;cursor: pointer; margin-top: 20px; margin-left: (50% - 150); background-color: transparent; border: none;text-align :center;">remove</button>
-
+                            
+                        <%} else {%>
+                                <div class="num" style="margin-bottom: 10px;font-weight: bold;">(<%=cartProd.length%>) item(s)</div>
+                                <div class="total" style="margin-bottom: 20px;font-weight: bold;">cart subtotal : $120</div>
+                                <div class="items">
+                                    <% for(let i = 0; i < cartProd.length; i++) {%>
+                                        <% let search = cartProd[i]; %>
+                                        
+                                        
+                                        
+                                            <div class="box" style="width: 230px; min-height: 300px;padding: 20px;box-shadow: 0 0 5px rgb(0 0 0 / 25%)">
+                                                <div class="prodPic" style = "display:flex;justify-content : center; width: 100% !important;height: 150px;"><img width="100%" src= "<%=cartProd[i].path%>" alt="">
+                                                </div> 
+                                                <div class="proddet">
+                                                    <h3 class="prodName"><%=cartProd[i].name%></h3>
+                                                    <!-- <div class="showadd"  id="showadd style="display: flex; align-items: center; cursor: pointer;">
+                                                        See Details <img src="/images/down.svg" alt="" width="20px" height="20px">
+                                                    </div> -->
+                                                    <div class="additional"  id="addit<%=i%>  style="width: 100%;display: none;">
+                                                        
+                                                        <p>PDF Pattern</p>
+                                                        <p>sizes : <%=cartProd[i].size%></p>
+                                                        <p>Forms : <%=cartProd[i].forms%></p>
+                                                    </div>
+                                                    
+                                                    <h4><%=cartProd[i].price%></h4>
+                                                    
+                                                    <form action="remove/?_method=PUT" method="post">
+                                                        <input type="hidden" name="toRemove" value="<%= cartProd[i].id %>">
+                                                        <button class="remove" id="<%=i%> " onclick="getId()" style="width: 100%;cursor: pointer; margin-top: 20px; margin-left: (50% - 150); background-color: transparent; border: none;text-align :center;">remove</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            
+                                            <%}%>
+                                            <!-- <script>
+                                                let thisId;
+                                                let remove = document.querySelectorAll(".remove");
+                                                
+                                                remove.forEach(el => {
+                                                    el.onclick = () =>{ 
+                                                        thisId = el.getAttribute("id");
+                                                        console.log(thisId);
+                                                        
+                                                    }
+                                                })
+                                            </script> -->
                                 </div>
-                            </div>
-                        </div>
 
-                        <button style="width: 80%;border: 1px solid black;background-color: #A1CAF1; padding: 10px; margin-left: calc(50% - 120px); margin-top: 20px; color: white;cursor: pointer;">BUY</button> -->
+                                <button style="width: 80%;border: 1px solid black;background-color: #A1CAF1; padding: 10px; margin-left: calc(50% - 120px); margin-top: 20px; color: white;cursor: pointer;">BUY</button>
+                        <%}%>
                     </div>
                 </div>
             </div>
@@ -57,17 +100,17 @@
         </div>
         <div class="submenu">
             <ul>
-                <li> <a href="/" class="active subA">Sewing Patterns</a></li>
-                <li id="categorie"> <a href="#" class="subA">Categories</a> <img src="/images/down.svg" alt="" width="20px" height="20px">
+                <li> <a href="/" class="subA">Sewing Patterns</a></li>
+                <li id="categorie"> <a href="#" class="subA">Categories <i class="fa-solid fa-chevron-down" style="font-size: 12px;"></i></a> 
                     
                         <ul class="categ">
-                            <li><a href="#">Men</a></li>
-                            <li><a href="#">Women</a></li>
-                            <li><a href="#">Kids</a> <img src="/images/down.svg" alt="" width="20px" height="20px">
+                            <li><a href="/men">Men</a></li>
+                            <li><a href="/women">Women</a></li>
+                            <li><a href="#">Kids <i class="fa-solid fa-chevron-down" style="font-size: 12px;"></i></a>
                                 <div >
                                     <ul class="subcateg">
-                                        <li><a href="#">Boys</a></li>
-                                        <li><a href="#">Girls</a></li>
+                                        <li><a href="/boys">Boys</a></li>
+                                        <li><a href="/girls">Girls</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -75,8 +118,10 @@
                     
                     
                 </li>
-                <li> <a href="#" class="subA">About</a></li>
+                <li> <a href="/about" class="subA">About</a></li>
                 <li> <a href="/contact" class="subA">Contact</a></li>
+                <li> <a href="/blog" class="subA">Blog</a></li>
+                
             </ul>
         </div>
     </div>
@@ -85,15 +130,127 @@
         <button class="close">
             <img src="/images/close_black_24dp.svg" alt="close">
         </div>
+        <% if(user) {%>
+            <div class="user">
+                <p><img src="/images/user.png" alt="" width="30px" height="30px"> Welcome, <%= user.fname%> </p>
+            </div>
+            <div class="icons sider">
+                    
+                    <div class="wishlist">
+                        <button class="but"><img src="/images/heart.svg" alt="" width="30px" height="30px"></button>
+                    </div>
+                    <div style="position: relative;">
+                        <button class="but" id="cart2"><img src="/images/cart.svg" alt="" width="40px" height="40px"></button>
+                        <div class="shoppingCart2">
+                                <% if(!locart || cartProd.length < 1){ %>
+                                    <p style ="color : #aaa">You have no items in your shopping cart.</p>
+                                        
+                                    <%} else {%>
+                                            <div class="num" style="margin-bottom: 10px;font-weight: bold;">(<%=cartProd.length%>) item(s)</div>
+                                            <div class="total" style="margin-bottom: 20px;font-weight: bold;">cart subtotal : $120</div>
+                                            <div class="items">
+                                                <% for(let i = 0; i < cartProd.length; i++) {%>
+                                                    <% let search = cartProd[i]; %>
+                                                    
+                                                        <div class="box" style="width: 230px; min-height: 300px;padding: 20px;box-shadow: 0 0 5px rgb(0 0 0 / 25%)">
+                                                            <div class="prodPic" style = "display:flex;justify-content : center; width: 100% !important;height: 150px;"><img width="100%" src= "<%=cartProd[i].path%>" alt="">
+                                                            </div> 
+                                                            <div class="proddet">
+                                                                <h3 class="prodName"><%=cartProd[i].name%></h3>
+                                                                <!-- <div class="showadd"  id="showadd style="display: flex; align-items: center; cursor: pointer;">
+                                                                    See Details <img src="/images/down.svg" alt="" width="20px" height="20px">
+                                                                </div> -->
+                                                                <div class="additional"  id="addit<%=i%>"  style="width: 100%;display: none;">
+                                                                    
+                                                                    <p>PDF Pattern</p>
+                                                                    <p>sizes : <%=cartProd[i].size%></p>
+                                                                    <p>Forms : <%=cartProd[i].forms%></p>
+                                                                </div>
+                                                                
+                                                                <h4><%=cartProd[i].price%></h4>
+                                                                
+                                                                <form action="remove/?_method=PUT" method="post">
+                                                                    <input type="hidden" name="toRemove" value="<%= cartProd[i].id %>">
+                                                                    <button class="remove" id=" style="width: 100%;cursor: pointer; margin-top: 20px; margin-left: (50% - 150); background-color: transparent; border: none;text-align :center;">remove</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <%}%>
+                                                        <!-- <script>
+                                                            let thisId;
+                                                            let remove = document.querySelectorAll(".remove");
+                                                            
+                                                            remove.forEach(el => {
+                                                                el.onclick = () =>{ 
+                                                                    thisId = el.getAttribute("id");
+                                                                    console.log(thisId);
+                                                                    
+                                                                }
+                                                            })
+                                                        </script> -->
+                                            </div>
+            
+                                            <button style="width: 80%;border: 1px solid black;background-color: #A1CAF1; padding: 10px; margin-left: calc(50% - 120px); margin-top: 20px; color: white;cursor: pointer;">BUY</button>
+                                    <%}%>
+                        </div>
+                    </div>
+                </div>
+        <% } else {%>
         <div class="bt">
             <button class="login">Se Connecter</button>
         </div>
+        <script>
+            let login = document.querySelector(".side .login");
+
+            login.onclick = () => location.assign("/login");
+        </script>
+    <% } %>
         <ul class="sideMenu">
-            <li> <a href="#">Sewing Patterns</a></li>
-            <li> <a href="#">Categories</a></li>
-            <li> <a href="#">About</a></li>
-            <li> <a href="#">Contact</a></li>
+            <li class="active"> <a href="/">Sewing Patterns</a></li>
+            <li id="sidecateg"> <a href="#" >Categories</a>
+            
+                <ul class="categ">
+                    <li><a href="/men">Men</a></li>
+                    <li><a href="/women">Women</a></li>
+                    <li><a href="#">Kids</a>
+                        <div >
+                            <ul class="subcateg" style="left: -100%;top: 0;">
+                                <li><a href="/boys">Boys</a></li>
+                                <li><a href="/girls">Girls</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            <!-- <script>
+                let sidecateg1 = document.querySelector("#sidecateg");
+                let sidecateg = document.querySelector(".side ul li .categ");
+
+                sidecateg1.onclick = () => {
+                    if(getComputedStyle(sidecateg).display == "none" )
+                        sidecateg.style.cssText = "display : block;"
+                    else 
+                        sidecateg.style.cssText = "display : none;"
+                } 
+
+            </script> -->
+            
+            </li>
+            <li> <a href="/about">About</a></li>
+            <li> <a href="/contact">Contact</a></li>
+            <li> <a href="/blog">Blog</a></li>
+            
         </ul>
+        <% if(user) {%>
+        <div class="bt">
+            <button class="logout" style="margin-top: 20px;">Logout</button>
+        </div>
+        <script>
+            let logout2 = document.querySelector(".side .bt .logout");
+
+            logout2.onclick = () => location.assign("/logout");
+        </script>
+    <% } %>
     </div>
     <div class="whishlist">
         <div class="head">
@@ -101,18 +258,56 @@
             <button class="close"><img src="/images/close_black_24dp.svg" alt=""></button>
         </div>
         <div class="whishcontent">
-            <p style="width: 100% ;"></p>You have no items in your Whishlist.</p>
-            <!-- <div class="box" style="width: 230px; height: 500px;">
-                <div class="prodPic"><a href="https://placeholder.com"></a><img src= "https://via.placeholder.com/230x300" alt="">
-                </div> 
-                <div class="proddet">
-                    <h3 class="prodName">name</h3>
-                    <h4>$12.99</h4>
-                    <button class="addCart" style="width: 80%;border: 1px solid black;background-color: #A1CAF1; padding: 10px;color: white;cursor: pointer;">Add To Cart</button>
-                    <button class="remove" style="width: 80%;cursor: pointer;">remove</button>
-                </div>
-            </div> -->
+            <% if(wish.length == 0) {%> 
+                <p style="width: 100% ;"></p>You have no items in your Whishlist.</p>
+            <% } else if (wish.length > 0) { %> 
+                <% wish.forEach(el => { %>
+                    <div class="box" style="width: 230px; height: 500px;">
+                        <div class="prodPic" style="width: 230px; height: 300px;"><img src="<%=el.path1%>" alt="" width= "230px" height= "300px" >
+                        </div> 
+                        <div class="proddet">
+                            <h3 class="prodName"><%= el.name %> </h3>
+                            <h4>$<%= el.price %> </h4>
+                            <form action="addToCart/?_method=PUT" method="POST" id="add2cart">
+                                <input type="hidden" name="id" value="<%= el.id %>">
+                                <button class="addCart" type="submit"style="width: 80%;border: 1px solid black;background-color: #A1CAF1; padding: 10px;color: white;cursor: pointer;display: flex;align-items: center;gap : 1px;margin-left : 11%;justify-content: center;"> <img src="/images/whitecart.svg" alt="" width="30px" height="30px"> ADD TO CART </button>
+                            </form>
+                            <form action="removewish/?_method=PUT" method="post">
+                                <input type="hidden" name="wishRemove" value="<%= el.id %>">
+                                <button class="remove" id=" style="width: 100%;cursor: pointer; margin-top: 20px; margin-left: (50% - 150); background-color: transparent; border: none;text-align :center;">remove</button>
+                            </form>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } %> 
         </div>
     </div>
 </header>
 <script src="/javascript/menu.js"></script>
+<% if(!user) {%>
+<script>
+    let User = document.querySelectorAll(".user");
+
+    User.forEach(el => {
+        el.onclick = () => location.assign("/login");
+    })
+</script>
+<%} else {%>
+    <script>
+        let User = document.querySelectorAll(".user");
+        let account = document.querySelector(".user .userAccount");
+
+        User.forEach(el => {
+        el.onclick = () => {
+            
+        if(getComputedStyle(account).display == "none" )
+            {   
+                account.style.cssText = "display : block;"}
+        else 
+            {
+                account.style.cssText = "display : none;"
+                
+            }
+    } })
+    </script>
+    <%}%>

@@ -4,27 +4,39 @@
         <hr id="aa" style="margin-bottom: 70px;">
         <div class="insContent">
             
-            <form action="/Inscription" method="POST">
+            <form action="/addProduct" method="POST">
                 <label for="prod">Name</label>
-                <input name="name"  id="prod"  type="text">
+                <input name="name"  id="prod"  type="text" required>
                 <label for="size">Size</label>
-                <input name="size"  id="size" type="text">
+                <input name="size"  id="size" type="text" required>
                 <label for="forms">Forms</label>
-                <input name="forms"  id="forms" type="text">
+                <input name="forms"  id="forms" type="text" required>
                 <label for="price">Price</label>
-                <input name="price"  id="price" type="text">
+                <input name="price"  id="price" type="text" required> 
                 <label for="gender">Gender</label>
-                <input name="gender"  id="gender" type="text">
+                <input name="gender"  id="gender" type="text" required>
                 <div class="file-input">
                 <h3>Add pictures for your product :</h3>
-                <input name="upload" type="file" id="file" class="file filepond">
-                <label for="file">
-                    <!-- Select file -->
-                    <!-- <p class="file-name"></p> -->
-                </label>
+                <h5>Main picture : </h5>
+                <input name="prodCover1" type="file" id="file1" class="file filepond">
+                <h5>Optional pictures : </h5>
+                <input name="prodCover2" type="file" id="file2" class="file filepond">
+
+                <input name="prodCover3" type="file" id="file3" class="file filepond">
+
+                <input name="prodCover4" type="file" id="file4" class="file filepond">
+
+                <input name="prodCover5" type="file" id="file5" class="file filepond">
+
+                <input name="prodCover6" type="file" id="file6" class="file filepond">
+
+                <input name="prodCover7" type="file" id="file7" class="file filepond">
+
+                <input name="prodCover8" type="file" id="file8" class="file filepond">
                 </div>
                 <input id="sub" type="submit" value = "Valider">
             </form>
         </div>
     </div>
 </div>
+

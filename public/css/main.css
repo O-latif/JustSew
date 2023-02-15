@@ -1,6 +1,7 @@
 /* globale values  */
 :root {
     --main-color: #A1CAF1;   
+    --hovering:#7db1e1;
     --leftr : 85%
 }
 * {
@@ -77,21 +78,52 @@ header .container {
     justify-content: space-around;
     width: 100%;
 }
-.menu .searchInput {
+.search {
+    position: relative;
+    height: 46px !important;
+    width: 30%;
+}
+.search .searchInput {
     display: flex;
     align-items: center;
-    width: 150%;
+    width: 140%;
     height: 100%;
     border: 0.5px solid black;
     padding: 5px 10px;
     border-radius: 0.25rem;
+    flex-wrap: wrap;
 }
 .menu .searchInput input {
     border: none;
-    width: 100%;
+    width: 85%;
+    height: 19px;
+    margin: 0;
+    padding: 0;
 }
 .menu .searchInput input:focus-visible {
     outline: none;
+}
+.searchInput form {
+    display: flex;
+    align-items: center;
+    height:24px !important;
+    width: 100%;
+    border: transparent;
+
+    padding: 5px;
+}
+
+.search .result {
+    display: none;
+    position: absolute;
+    width: 140%;
+    height: fit-content;
+    padding: 5px 10px;
+    border: 1px solid black;
+    background-color: white;
+    margin-top: -2px;
+    border-top: transparent;
+    z-index: 2;
 }
 .submenu {
     width: 100%;
@@ -103,6 +135,7 @@ header .container {
     align-items: center;
     list-style: none;
     margin: 10px 0 0;
+    padding-left: 40px;
 }
 .submenu ul li {
     margin-right: 25px;
@@ -132,6 +165,24 @@ header ul li:hover .subA{
     background-color: white;
     height: auto;
     width: 140px;
+
+}
+.side ul li {
+    position: relative;
+}
+#sidecateg:hover .categ {
+    display: block;
+}
+.side ul li .categ {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: -140px;
+    color: #000 !important;
+    background-color: white;
+    height: auto;
+    width: 140px;
+
 }
 .submenu ul li#categorie .categ li:hover {
     background-color: #efefef;
@@ -170,6 +221,45 @@ header .icons {
     justify-content: space-around;
     /* width: 30%;: */
 }
+header .icons .user {
+    position: relative;
+}
+header .icons .userAccount {
+    border: 1px solid var(--main-color);
+    position: absolute;
+    background-color: #fefefe;
+    padding: 25px;
+    right: 0px;
+    height: 150px;
+    box-shadow: 0 0 5px rgb(0 0 0/ 25%);
+    width: 350px;
+    z-index: 1;
+}
+header .icons .userAccount::before {
+    content: "";
+    position: absolute;
+    top: -14px;
+    right: 17px;
+    width: 0;
+    height: 0;
+    border: 7px solid transparent;
+    border-bottom-color: #fefefe;
+    z-index: 1;
+}
+header .icons .userAccount .logout {
+    height: 40px;
+    width: 150px;
+    margin-top: 10px;
+    border:1px solid black;
+    border-radius: 0.25rem;
+    background-color: var(--main-color);
+    color: white;
+    cursor: pointer;
+}
+header .icons .userAccount .logout:hover {
+    background-color: var(--hovering);
+    transition-duration: .3s;
+}
 header .icons .but {
     width: 50px;
     height: 50px;
@@ -178,11 +268,12 @@ header .icons .but {
 header .icons .but:hover {
     background-color: #efefef;
 }
-
+header .shoppingCart2 .items
 header .shoppingCart .items {
     display: flex;
     justify-content: center;
 }
+header .shoppingCart2,
 header .shoppingCart {
     display: none;
     align-items: center;
@@ -191,10 +282,14 @@ header .shoppingCart {
     padding: 25px;
     right: 0px;
     min-height: 100px;
+    max-height: 550px;
+    overflow: auto;
     box-shadow: 0 0 5px rgb(0 0 0/ 25%);
     min-width: 350px;
+    z-index: 1;
 }
-header .shoppingCart::before {
+header .shoppingCart::before ,
+header .shoppingCart2::before {
     content: "";
     position: absolute;
     top: -14px;
@@ -203,6 +298,7 @@ header .shoppingCart::before {
     height: 0;
     border: 7px solid transparent;
     border-bottom-color: #fefefe;
+    z-index: 1;
 }
 .search input::placeholder {
     font-size: 12px;
@@ -215,16 +311,21 @@ header .whishlist {
     left: 0;
     display: flex;
     margin-left: -500px;
-    flex-direction: column;
+    /* flex-direction: column; */
     flex-wrap: wrap;
+    justify-content: center;
     align-items: flex-start;
     width: 500px;
-    height: 100%;
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow: auto;
     z-index: 6;
     background-color: white;
     border-right: 1px solid black;
     margin-top: 0;
     transition-duration: .5s;
+    
+    
 }
 header .whishlist .head {
     display: flex;
@@ -245,7 +346,7 @@ header .whishlist .head .close img {
     height: 35px;
 }
 header .whishlist .whishcontent {
-    width: 100%;
+    /* width: 100%; */
     color: #aaa;
     text-align: center;
 }
@@ -267,9 +368,32 @@ header .side {
     margin-top: 0;
     transition-duration: .5s;
 } 
+.side .user p{
+    display: flex;
+    align-items: center;
+    margin-top: 47px;
+    gap: 10px;
+    margin-left: 10px;
+}
+.side .user p img {
+    border: 1px solid black;
+    border-radius: 50%;
+    padding: 5px;
+    width: 40px;
+    height: 40px;
+}
+.side .user p::after {
+    content: "";
+    position: absolute;
+    top: 118px;
+    right: 0%;
+    height: 1px;
+    width: 300px;
+    background-color: #00000057;
+}
 header .side ul {
     list-style: none; 
-    margin:0 0 20px;
+    margin:0;
     padding: 0;
     width: 100%;
 }
@@ -281,17 +405,30 @@ header .side li {
     padding-left: 20px;
     transition-duration: .3s;
 }
+.side .active,
 header .side li:hover {
     padding-left: 40px ;
     transition-duration: .3s;
-    background-color:#efefef ;
+    background-color:hsl(0, 0%, 94%) ;
 }
+.side .active a {
+    color: var(--main-color) !important;
+}
+/* header .side li:hover .active {
+    padding-left: 40px ;
+    transition-duration: .3s;
+    background-color:#efefef ;
+
+} */
 header .side li a {
+    display: block;
     text-decoration: none;
     color: black;
+    width: 100%;
+    height: 100%;
 }
 header .side li:hover a {
-    color: #82b1d6
+    color: var(--hovering);
 }
 header .side button,
 header .whishlist button {
@@ -315,6 +452,21 @@ header .side .close::after {
     width: 300px;
     background-color: #00000057;
 }
+.sider {
+    display: flex !important;
+    justify-content: space-evenly !important;
+    margin: 5px auto 10px; 
+    width: 100%;
+}
+.sider::after {
+    content: "";
+    position: absolute;
+    top: 186px;
+    right: 0%;
+    height: 1px;
+    width: 300px;
+    background-color: #00000057;
+}
 header .side .sideMenu  {
     border-bottom: 1px solid #00000057;
     width: 100%;
@@ -324,28 +476,33 @@ header .side .bt {
     width: 100%;
 
 }
-header .side .login {
+header .side .login,
+header .side .logout {
     height: 40px;
     width: 150px;
     margin: 50px auto 20px calc(50% - 75px);
     border:1px solid black;
     border-radius: 0.25rem;
-    background-color: #82b1d6;
+    background-color: var(--main-color);
     color: white;
 }
-header .login:hover {
-    background-color: #548cb8;
+header .login:hover,
+header .side .logout:hover {
+    background-color: var(--hovering);
     transition-duration: .3s;
 }
 @media (max-width: 991px) {
     .menu .searchInput {
         width: 100%;
     }
+    .search .result {
+        width: 100%;
+    }
 }
 @media (max-width: 768px) {
     header {
         height: 72px;
-        padding-top: 16px;
+        padding-top: 10px;
     }
 	header .icons {
         display: none;
@@ -375,7 +532,7 @@ header .login:hover {
     align-items: center;
     justify-content: center;
     background-image: url("/images/land.jpg");
-    background-size: 100% 575px;
+    background-size: 100% 100%;
     height: 80vh;
     position: relative;
 }
@@ -409,7 +566,7 @@ header .login:hover {
     display: flex;
     flex-wrap: wrap;
 }
-.products .title h1 {
+.title h1 {
     width: fit-content;
     padding: 20px;
     border: 2px black solid;
@@ -418,11 +575,11 @@ header .login:hover {
     transition-duration: 0.5s;
     transition-delay: 0.3s;
 }
-.products .title h1:hover {
+.title h1:hover {
     color:white;
     border: white 2px solid;
 }
-.products .title h1:hover::before {
+.title h1:hover::before {
     right: 0;
     top: 0;
     height: 100%;
@@ -430,7 +587,7 @@ header .login:hover {
     border-radius: 0;
     z-index: -1;
 }
-.products .title h1:hover::after {
+.title h1:hover::after {
     left: 0;
     top: 0;
     height: 100%;
@@ -438,7 +595,7 @@ header .login:hover {
     border-radius: 0;
     z-index: -1;
 }
-.products .title h1::before {
+.title h1::before {
     content: "";
     position: absolute;
     top: 50%;
@@ -449,7 +606,7 @@ header .login:hover {
     background-color: var(--main-color);
     transition-duration: 0.5s;
 }
-.products .title h1::after {
+.title h1::after {
     content: "";
     position: absolute;
     top: 50%;
@@ -496,12 +653,19 @@ header .login:hover {
 .products .container .showType select:focus-visible {
     outline: none;
 }
-.products .container .all {
+.products .container .all .byDate,
+.products .container .all .byName{
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
     justify-content: space-around;
 }
+@media (max-width: 657px) {
+	.type {
+		display: none !important;
+	}
+}
+
 .products .container .box {
     position: relative;
     display: flex;
@@ -525,23 +689,34 @@ header .login:hover {
     display: flex;
     justify-content: center;
     width: 100%;
+    margin-top: 10px;
 }
+.products .container .pages .numbers .buttn {
+    display: none;
+}
+.products .container .pages .numbers .buttn:nth-of-type(3), 
+.products .container .pages .numbers .buttn:nth-of-type(2){
+    display: block;
+}
+.products .container .pages .numbers form,
 .products .container .pages .numbers {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 8px;
     align-items: center;
 }
 .products .container .pages .numbers p {
     align-items: center;
 }
-.products .container .pages .numbers a {
+.products .container .pages .numbers button {
     display: flex;
     text-decoration: none;
     align-items: center;
     color: #aaa;
+    background-color: transparent;
+    border: none;
 }
-.products .container .pages .numbers a:hover {
+.products .container .pages .numbers button:hover {
     color: black;
 }
 .products .container .box .remove{
@@ -552,6 +727,7 @@ header .login:hover {
     padding: 3px;
     display: inline-block;
     position: absolute;
+    
     cursor: pointer;
 }
 
@@ -563,7 +739,8 @@ header .login:hover {
     padding: 10px;
 }
 
-.products .container .box .addCart {
+.products .container .box .addCart,
+.proddet .addcart {
     width: 88%;
     padding: 8px 0;
     font-size: 13px;
@@ -580,8 +757,7 @@ header .login:hover {
     justify-content: center;
     gap: 10px;
 }
-.products .container .box::before {
-    content: "";
+.products .container .box .wishheart {
     position: absolute;
     top: 2%;
     left: var(--leftr);
@@ -623,7 +799,7 @@ footer .contact::before {
     content: "";
     position: absolute;
     height: 1px;
-    width: 40%;
+    width:35%;
     top: 50%;
     left: 0;
     background-color: white;
@@ -632,11 +808,42 @@ footer .contact::after {
     content: "";
     position: absolute;
     height: 1px;
-    width: 40%;
+    width: 35%;
+    left: 65%;
     top: 50%;
-    left: 60%;
     background-color: white;
 }
+
+/* smaller  */
+@media (max-width: 428px) {
+	footer .contact::before {
+    display: none;
+    }
+    footer .contact::after {
+        display: none;
+    }
+}
+/* small  */
+@media (max-width: 768px) {
+	footer .contact::before {
+        width: 20%;
+    }
+	footer .contact::after {
+        width: 20%;
+        left: 80%;
+    }
+}
+/* medium  */
+@media (max-width: 992px) {
+	footer .contact::before {
+        width: 30%;
+    }
+	footer .contact::after {
+        width: 30%;
+        left: 70%;
+    }
+}
+
 footer .contact .cont div {
     background-repeat: no-repeat;
     width: 25px !important; 
