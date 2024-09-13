@@ -68,20 +68,21 @@
 </div>
 </div>
 <script>
-    let login = document.querySelector(".log");
-        login.onclick = function(e) {
+    let loginb = document.querySelector(".log");
+    
+        loginb.onclick = function(e) {
             e.preventDefault();
             location.assign("/login");
         }
 
-    const form = document.querySelector("form");
+    const form = document.querySelector(".n1");
     const fnerr = document.querySelector(".fnErr");
     const lnerr = document.querySelector(".lnErr");
     const emerr = document.querySelector(".emailErr");
     const mdperr = document.querySelector(".mdpErr");
     const mdpcerr = document.querySelector(".mdpcErr");
 
-
+console.log("form : ", form)
     form.addEventListener("submit", async(e) => {
         e.preventDefault();
 
@@ -115,7 +116,7 @@
                     mdperr.textContent = data.errors.mdp;
                 }
                 if(data.user) {
-                    location.assign("/");
+                    location.assign("/login");
                 }
             } catch(err) {
                 console.log(err)

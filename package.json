@@ -19,9 +19,11 @@
   },
   "homepage": "https://github.com/O-latif/JustSew#readme",
   "dependencies": {
+    "@paypal/checkout-server-sdk": "^1.0.3",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.20.0",
     "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
@@ -29,6 +31,8 @@
     "jsonwebtoken": "^8.5.1",
     "method-override": "^3.0.0",
     "mongoose": "^6.3.6",
+    "node-fetch": "^2.6.11",
+    "nodemailer": "^6.9.3",
     "validator": "^13.7.0"
   },
   "devDependencies": {

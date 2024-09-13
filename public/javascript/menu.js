@@ -1,3 +1,5 @@
+// const { json } = require("body-parser");s
+
 let menu = document.querySelector(".side");
 let close = document.querySelector(".close");
 let closewhish = document.querySelector(".whishlist .close");
@@ -8,7 +10,7 @@ let cart2 = document.querySelector("#cart2");
 let whlist = document.querySelectorAll(".wishlist");
 let cartbox = document.querySelector(".shoppingCart");
 let cartbox2 = document.querySelector(".shoppingCart2");
-
+let buy = document.querySelectorAll('.buy');
 
 
 //active classes 
@@ -65,13 +67,16 @@ cart.onclick = () => {
         cartbox.style.cssText = "display : block;"
     else 
         cartbox.style.cssText = "display : none;"
-} 
-cart2.onclick = () => {
-    if(getComputedStyle(cartbox2).display == "none" )
-        cartbox2.style.cssText = "display : block;"
-    else 
-        cartbox2.style.cssText = "display : none;"
-} 
+}
+if(cart2){
+    cart2.onclick = () => {
+        if(getComputedStyle(cartbox2).display == "none" )
+            cartbox2.style.cssText = "display : block;"
+        else 
+            cartbox2.style.cssText = "display : none;"
+    }     
+}
+
 
 let sar = document.getElementsByName('sar')[0];
 sar.onfocus = () => {
@@ -127,3 +132,12 @@ setInterval(() => {
     function clik(e) {
         e.onclick = () =>  location.assign("/product/"+e.id)
     }
+    
+
+
+buy.forEach(el => {
+    el.onclick = ()=> location.assign("/payment");
+})
+
+
+

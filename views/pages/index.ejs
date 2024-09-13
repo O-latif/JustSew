@@ -25,16 +25,25 @@
         </div>
         <div class="all">
             
-                <div class="byDate">
+                <div class="byDate">                            
+
                     <% if(Tproducts.length >= 1) {%>
-                
                         <% for( let k = 0; k < Tproducts.length ; k++ ) { %>
-                        <div class="box " onclick="location.href='/product/<%= Tproducts[k].id %>'">
+                        <div class="box " onclick="location.href='/product/<%= Tproducts[k]._id %>'">
                                 <div class="prodPic">
-                                    <form action="addToWishlist/?_method=PUT" method="post" style="width: 0; height: 0;">
+                                    <% let wishArr = [] %>
+                                    <% wish.forEach(element => { %>
+                                        <% wishArr.push(element.id) %>
+                                    <% }) %>
+                                    <% if (!wishArr.includes(Tproducts[k].id)) { %>
+                                     <form action="addToWishlist/?_method=PUT" method="post" style="width: 0; height: 0;">
                                         <input type="hidden" name="wishId" value="<%= Tproducts[k].id %> ">
                                         <button type="submit"><img class= "wishheart" src="/images/heart.svg" alt="wishlist"></button>
                                     </form>
+                                    <% } else {%>
+                                        <img class= "wishheart" src="/images/heart-solid.svg" alt="wishlist">
+                                    <% } %>
+                                    
                                     
                                         <% if(user) { %>
                                             <% if(user.owner === true) { %>
@@ -47,11 +56,24 @@
                                         <% } %>
                                     
                                     <img src= "<%= Tproducts[k].path1 %>" alt="<%= Tproducts[k].name %>" width="300px" height="400px">
-                                    
-                                    <form action="addToCart/?_method=PUT" method="POST" id="add2cart">
-                                        <input type="hidden" name="id" value="<%= Tproducts[k].id %>">
-                                        <button class="addCart" type="submit"> <img src="/images/whitecart.svg" alt="" width="30px" height="30px"> ADD TO CART </button>
-                                    </form>
+                                    <% let arr = [] %>
+                                    <% cartProd.forEach(element => { %>
+                                     <% arr.push(element.id) %>
+                                    <% }) %>
+                                    <% if (!arr.includes(Tproducts[k].id)) { %>
+                                        <form action="addToCart/?_method=PUT" method="POST" id="add2cart">
+                                            <input type="hidden" name="id" value="<%= Tproducts[k].id %>">
+                                            <input type="hidden" name="location" value="">
+                                            <script type="text/javascript">
+                                                document.addEventListener("DOMContentLoaded", function() {
+                                                document.getElementsByName("location")[<%=k%>].value = window.location.href;
+                                                });
+                                            </script>
+                                            <button class="addCart" type="submit"> <img src="/images/whitecart.svg" alt="" width="30px" height="30px"> ADD TO CART </button>
+                                        </form>
+                                    <% } else {%>
+                                        <button class="addCart"> <img src="/images/whitecart.svg" alt="" width="30px" height="30px"> ADDED TO CART </button>
+                                    <% } %>
                                     
     
                                 </div> 
@@ -83,7 +105,7 @@
                             
                     <% } %>
                     <%} else {%>
-                        <P>NO Patterns Found </P>
+                        <P class="notFound">NO Patterns Found </P>
                     <%}%>
                 </div>
                 <div class="byName" style="display: none;">
@@ -92,10 +114,18 @@
                         <% for( let k = 0; k < Nproducts.length ; k++ ) { %>
                         <div class="box" onclick="location.href='/product/<%= Nproducts[k].id %>'">
                                 <div class="prodPic">
-                                    <form action="addToWishlist/?_method=PUT" method="post" style="width: 0; height: 0;">
-                                        <input type="hidden" name="wishId" value="<%= Nproducts[k].id %> ">
-                                        <button type="submit"><img class= "wishheart" src="/images/heart.svg" alt="wishlist"></button>
-                                    </form>
+                                        <% let wishArr = [] %>
+                                        <% wish.forEach(element => { %>
+                                            <% wishArr.push(element.id) %>
+                                        <% }) %>
+                                        <% if (!wishArr.includes(Tproducts[k].id)) { %>
+                                         <form action="addToWishlist/?_method=PUT" method="post" style="width: 0; height: 0;">
+                                            <input type="hidden" name="wishId" value="<%= Tproducts[k].id %> ">
+                                            <button type="submit"><img class= "wishheart" src="/images/heart.svg" alt="wishlist"></button>
+                                        </form>
+                                        <% } else {%>
+                                            <img class= "wishheart" src="/images/heart-solid.svg" alt="wishlist">
+                                        <% } %>
                                     
                                         <% if(user) { %>
                                             <% if(user.owner === true) { %>
@@ -104,11 +134,26 @@
                                         <% } %>
                                     
                                     <img src= "<%= Nproducts[k].path1 %>" alt="<%= Nproducts[k].name %>" width="300px" height="400px">
-                                    
-                                    <form action="addToCart/?_method=PUT" method="POST" id="add2cart">
-                                        <input type="hidden" name="id" value="<%= Nproducts[k].id %>">
-                                        <button class="addCart" type="submit"> <img src="/images/whitecart.svg" alt="" width="30px" height="30px"> ADD TO CART </button>
-                                    </form>
+                                    <% let arr = [] %>
+                                    <% cartProd.forEach(element => { %>
+                                     <% arr.push(element.id) %>
+                                    <% }) %>
+                                    <% if (!arr.includes(Nproducts[k].id)) { %>
+                                        <form action="addToCart/?_method=PUT" method="POST" id="add2cart">
+                                            <input type="hidden" name="id" value="<%= Nproducts[k].id %>">
+                                            <input type="hidden" id="n<%= k %>" name="location" value="">
+                                            <script type="text/javascript">
+                                                document.addEventListener("DOMContentLoaded", function() {
+                                                    document.getElementById("n<%= k %>").value = window.location.href;
+                                                    console.log(document.getElementById("n<%= k %>").value)
+                                                
+                                                });
+                                            </script>
+                                            <button class="addCart" type="submit"> <img src="/images/whitecart.svg" alt="" width="30px" height="30px"> ADD TO CART </button>
+                                        </form>
+                                    <% } else {%>
+                                        <button class="addCart"> <img src="/images/whitecart.svg" alt="" width="30px" height="30px"> ADDED TO CART </button>
+                                    <% } %>
                                     
     
                                 </div> 
@@ -140,7 +185,7 @@
                             
                     <% } %>
                     <%} else {%>
-                        <P>NO Patterns Found </P>
+                        <P class="notFound">NO Patterns Found </P>
                     <%}%>
                 </div>
             <% if(user) { %>
@@ -162,7 +207,7 @@
                 <form action="/numerating" method="post">
                     
                     <% if (all.length > 1) { %>
-                        <% let nums = Math.ceil(all.length/3) %>
+                        <% let nums = Math.ceil(all.length/9) %>
                         
                     <button type="submit" id="icn2"><i class="fa-sharp fa-solid fa-angle-left" style="font-size: 12px;"></i></button>
                     <button type="submit" class="buttn">1 </button>
@@ -190,12 +235,21 @@
                     removeAct();
 
                     if(len > 1) {
-                        icn.style.display = "block";
-                        icn2.style.display = "block";
+                        if(icn){
+                            icn.style.display = "block";
+                        }
+                        if(icn2){
+                            icn2.style.display = "block";
+                        }
+                        
 
                     } else {
-                        icn.style.display = "none";
-                        icn2.style.display = "none";
+                        if(icn){
+                            icn.style.display = "none";
+                        }
+                        if(icn2){
+                            icn2.style.display = "none";
+                        }
                     }
 
                     but.forEach((el , i) => {
@@ -208,10 +262,13 @@
                                     }
                                 }
                             })
+                    const nthBtn = document.querySelector(`.numbers .buttn:nth-of-type(${len + 1})`);
+                    if(nthBtn) nthBtn.style.cssText = "display : block";
+                    
+                    const numInp = document.querySelector(".numbers form input");
 
-                    document.querySelector(`.numbers .buttn:nth-of-type(${len + 1})`).style.cssText = "display : block";
-
-                    if(document.querySelector(".numbers form input").value < Math.ceil(<%= all.length/3 %>)) {
+                    if(numInp) {
+                        if(numInp.value < Math.ceil(<%= all.length/9 %>)) {
                             icn.onclick = () => {
 
                             but.forEach((el , i) => {
@@ -222,7 +279,8 @@
                             but[clck + 1].click();
                         }
                     }
-                    console.log("val : " + document.querySelector(".numbers form input").value) ;
+                    }
+                    // console.log("val : " + document.querySelector(".numbers form input").value) ;
                     if(clck > 1) {
                             icn2.onclick = () => {
                             
@@ -240,8 +298,7 @@
                         el.onclick = () => {
                             removeAct();
                             
-                            document.querySelector(".numbers form input").value = el.textContent;
-                            
+                            document.querySelector(".numbers form input").value = parseInt(el.textContent);
                             
                         }
                     })

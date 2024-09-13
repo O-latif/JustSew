@@ -120,10 +120,10 @@ module.exports.signUp_post = async(req, res) => {
     
     try {
         const user = await User.create({fname, lname, email, mdp});
-        const token = createToken(user._id);
-        res.cookie('jwt', token , {httpOnly : true , maxAge : maxAge * 1000});
-        // res.status(201).json({user : user._id});
-        res.redirect("/");
+        // const token = createToken(user._id);
+        // res.cookie('jwt', token , {httpOnly : true , maxAge : maxAge * 1000});
+        res.status(201).json({user : user._id});
+        // res.redirect("/");
     }catch (err) {
         let errors = handleErrors(err);
         res.status(400).json( {errors} );
@@ -138,6 +138,7 @@ module.exports.login_post = async(req, res) => {
         res.cookie('jwt', token , {httpOnly : true , maxAge : maxAge * 1000});
         
         res.status(200).json({ user : user._id});
+        // res.redirect("/");
 
     } catch(err) {
         let errors = handleErrors(err);

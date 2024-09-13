@@ -36,13 +36,14 @@
     </div>
 </div>
 <script>
+    
     let join = document.querySelector(".signup");
         join.onclick = function(e){
             e.preventDefault();
             location.assign("/sign-up");
         }
 
-        const form = document.querySelector("form");
+        const form = document.querySelector(".n2");
 
     const emerr = document.querySelector(".emailErr");
     const mdperr = document.querySelector(".mdpErr");
@@ -66,6 +67,8 @@
                 headers: {'Content-Type': 'application/json'},
             });
             const data = await res.json();
+            
+
             if(data.errors) {
                 emerr.textContent = data.errors.email;
                 mdperr.textContent = data.errors.mdp;

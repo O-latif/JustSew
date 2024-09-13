@@ -15,7 +15,7 @@ router.post("/numerating",checkUser,checkCart, async (req,res) => {
     let resultN = [];
     let p = 1 ;
     if(req.body.val > 1){
-        for(let i = (3 * (parseInt(req.body.val) - 1)) ; i <= (3 * parseInt(req.body.val))-1 ; i++) {
+        for(let i = (9 * (parseInt(req.body.val) - 1)) ; i <= (9 * parseInt(req.body.val))-1 ; i++) {
             if(r[i]){
                 resultT.push(r[i]);
             }
@@ -24,7 +24,7 @@ router.post("/numerating",checkUser,checkCart, async (req,res) => {
             }
         }
     } else if (req.body.val == 1){
-        for(let i = 1 ; i <= 3 ; i++) {
+        for(let i = 1 ; i <= 9 ; i++) {
             resultT.push(r[i-1]);
             resultN.push(N[i-1]);
         }
@@ -59,7 +59,7 @@ router.post("/numerating",checkUser,checkCart, async (req,res) => {
         
     }
     
-    res.render("../index",{css:"" ,all : r, Tproducts : resultT,Nproducts : resultN,act : req.body.val, cartProd : cartArr,wish : wishProducts, title : "Sewing Patterns"});
+    res.render("pages/index",{css:"" ,all : r, Tproducts : resultT,Nproducts : resultN,act : req.body.val, cartProd : cartArr,wish : wishProducts, title : "Sewing Patterns"});
 })
 
 module.exports = router;

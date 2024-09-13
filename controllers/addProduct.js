@@ -56,7 +56,13 @@ function saveCover8 (product , coverencoded) {
         product.prodCover8 =new Buffer.from( cover.data, "base64")
     }
 }
-
+function savePdf (product , coverencoded) {
+    if(coverencoded == null) return
+    const cover = JSON.parse(coverencoded)
+    if(cover != null) {
+        product.pdf =new Buffer.from( cover.data, "base64")
+    }
+}
 
 module.exports.addProduct = async (req ,res ) => {
 
@@ -74,6 +80,7 @@ module.exports.addProduct = async (req ,res ) => {
         prodCover6 : req.body.prodCover6,
         prodCover7 : req.body.prodCover7,
         prodCover8 : req.body.prodCover8,
+        pdf : req.body.pdf,
     })
     
     if(req.body.prodCover1) saveCover1(product ,req.body.prodCover1);
@@ -84,6 +91,7 @@ module.exports.addProduct = async (req ,res ) => {
     if(req.body.prodCover6) saveCover6(product ,req.body.prodCover6);
     if(req.body.prodCover7) saveCover7(product ,req.body.prodCover7);
     if(req.body.prodCover8) saveCover8(product ,req.body.prodCover8);
+    if(req.body.pdf) savePdf(product ,req.body.pdf);
     
     
     product.save()

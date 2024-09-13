@@ -1,0 +1,39 @@
+.thank {
+  height: 80vh;
+}
+.thank .container img {
+  width: 100% !important;
+}
+.thank h1 {
+  width: 100%;
+  text-align: center;
+  font-family: 'Nothing You Could Do', cursive;
+  font-size:45px ;
+}
+
+.thank p {
+  width: 100%;
+  text-align: center;
+  color: #aaa;
+}
+.thank button {
+  width: 30%;
+  border: 1px solid black;
+  background-color: #A1CAF1;
+  padding: 15px;
+  /* margin-left: calc(50% - 120px); */
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: white;
+  cursor: pointer;
+  border-radius: 25px;
+}
+.thank button:hover {
+  background-color: var(--hovering);
+}
+.b {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+}

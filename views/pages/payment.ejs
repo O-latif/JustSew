@@ -1,0 +1,113 @@
+<div class="payment">
+  <div class="container">
+      <div class="title" style="width: 100%;display: flex;justify-content: center;margin-bottom: 40px;">
+        <h1>Payment</h1>
+      </div>
+      <div class="details">
+        <h2>Cart details : </h2>
+        <div class="cont">
+          <% for( let i = 0; i < cartProd.length; i++ ) { %>
+            <div class="prod">
+              <div class="pic"><img src="<%= cartProd[i].path1 %>" alt="<%= cartProd[i].name %>"></div>
+              <div class="det">
+                <h3><%= cartProd[i].name %></h3>
+                <p>PDF Pattern</p>
+                <p>sizes : <%=cartProd[i].size%></p>
+                <p>Forms : <%=cartProd[i].forms%></p>
+                <p>Price : $<%=cartProd[i].price%></p>
+              </div>
+
+            </div>
+            <% if (i !== (cartProd.length)-1) { %>
+              <hr style="width: 90%;">
+            <% } %>
+            
+          <% } %>
+        </div>
+        <% let sum2 = 0; %>
+        <% for( let i = 0; i < cartProd.length; i++ ) { %>
+          <%sum2 = sum2 + cartProd[i].price %>
+        <% } %>
+        <div class="total" style="margin-bottom: 20px;font-weight: bold;">
+          <p>cart subtotal : $<%= sum2.toFixed(2) %></p>
+        </div>
+      </div>
+      <!-- Replace "test" with your own sandbox Business account app client ID -->
+      <script src="https://www.paypal.com/sdk/js?client-id=<%=pplId%>&currency=USD"></script>
+      <!-- Set up a container element for the button -->
+      <div id="paypal-button-container"></div>
+      <form action="/payment" method="post" id="payed">
+        <input type="hidden" value="false"  name = "send">
+      </form>
+      <script>
+        
+        let sum = parseFloat(document.getElementsByClassName("total")[0].getAttribute("price"));
+          console.log(parseFloat(sum.toFixed(2)))
+        paypal.Buttons({
+          style: {
+            layout: 'vertical',
+            color:  'blue',
+            shape:  'rect',
+            label:  'paypal'
+          },
+
+          // Order is created on the server and the order id is returned
+          createOrder() {
+            return fetch("/my-server/create-paypal-order", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              // use the "body" param to optionally pass additional order information
+              // like product skus and quantities
+              body: JSON.stringify({
+                total: parseFloat(sum.toFixed(2))
+              }),
+            })
+            .then((response) => response.json())
+            .then((order) => order.id);
+          },
+      // Finalize the transaction on the server after payer approval
+          onApprove(data) {
+            return fetch("/my-server/capture-paypal-order", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                orderID: data.orderID
+              })
+            })
+            .then((response) => response.json())
+            .then((orderData) => {
+              // Successful capture! For dev/demo purposes:
+              // console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+              // const transaction = orderData.purchase_units[0].payments.captures[0];
+              // alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
+              // When ready to go live, remove the alert and show a success message within this page. For example:
+              // const element = document.getElementById('paypal-button-container');
+              // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+
+              window.location.href = '/Thnk';
+              const payed = document.getElementById('payed');
+              payed.send.value = 'true';
+              console.log(payed.send.value);
+              fetch("/payment", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                send: payed.send.value
+              })
+            })
+              
+              // Or go to another URL:  window.location.href = 'thank_you.html';
+            });
+          }
+        }).render('#paypal-button-container');
+
+  
+    </script> 
+  </div>
+</div>

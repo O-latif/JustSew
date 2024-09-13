@@ -145,26 +145,28 @@
             <% }) %>
             
         <% } else { %>
-            <p>There Is No Posts</p>
+            <p class="notFound">There Is No Posts</p>
         <% } %> 
-            <div class="createPost">
-                <h2>Create A Post :</h2>
-                <form action="/blog" method="post">
-                    <label for="newPost" style="display: block; font-weight: bold;font-size: 20px;margin-bottom: 5px;">Post Content :</label>
-                    <textarea name="newPost" id="newPost" placeholder="Type here ..."></textarea>
-                    <input name="prodCover1" type="file" id="file1"  class="file filepond">
-                    <input name="prodCover2" type="file" id="file1"  class="file filepond">
-                    <input name="prodCover3" type="file" id="file1"  class="file filepond">
-                    <input name="prodCover4" type="file" id="file1"  class="file filepond">
-                    <input name="prodCover5" type="file" id="file1"  class="file filepond">
-                    <input name="prodCover6" type="file" id="file1"  class="file filepond">
-                    <input name="prodCover7" type="file" id="file1"  class="file filepond">
-                    <input name="prodCover8" type="file" id="file1"  class="file filepond">
-                    <div class="buttons" style="width: 100%;">
-                        <button>Post</button>
+            <% if (user && user.owner === true) { %>
+                <div class="createPost">
+                        <h2>Create A Post :</h2>
+                        <form action="/blog" method="post">
+                            <label for="newPost" style="display: block; font-weight: bold;font-size: 20px;margin-bottom: 5px;">Post Content :</label>
+                            <textarea name="newPost" id="newPost" placeholder="Type here ..."></textarea>
+                            <input name="prodCover1" type="file" id="file1"  class="file filepond">
+                            <input name="prodCover2" type="file" id="file1"  class="file filepond">
+                            <input name="prodCover3" type="file" id="file1"  class="file filepond">
+                            <input name="prodCover4" type="file" id="file1"  class="file filepond">
+                            <input name="prodCover5" type="file" id="file1"  class="file filepond">
+                            <input name="prodCover6" type="file" id="file1"  class="file filepond">
+                            <input name="prodCover7" type="file" id="file1"  class="file filepond">
+                            <input name="prodCover8" type="file" id="file1"  class="file filepond">
+                            <div class="buttons" style="width: 100%;">
+                                <button>Post</button>
+                            </div>
+                        </form>
                     </div>
-                </form>
-            </div>
+            <% } %>
     </div>
     
 </div>

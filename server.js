@@ -9,14 +9,16 @@ const { requireAuth,checkUser } = require("./middleware/authenticate")
 const {checkCart} = require("./middleware/cart")
 var methodOverride = require('method-override')
 
+
 // override with POST having ?_method=PUT
 app.use(methodOverride('_method'));
 
 dotenv.config();
-// const url = process.env.MONGO_URL;//ki tbadlah ma t7otahch f github i'll wait for you kana allah fi 3awnik
+const PORT = process.env.PORT || 5500;
+// const url = process.env.MONGO_URL1;
 const url = 'mongodb://127.0.0.1:27017';
 mongoose.connect(url ,{useNewUrlParser: true, useUnifiedTopology: true})
-    .then((result) => app.listen(process.env.PORT || 5000))
+    .then((result) => app.listen(PORT, console.log(`server started on ${PORT}`)) )
     .catch((err) => console.log(err));
 
     
@@ -30,6 +32,8 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({limit : '50mb', extended : false}));
 app.use(bodyParser.json())
 app.use(cookieParser());
+
+
 
 
 
@@ -55,8 +59,12 @@ const blgComRouter = require("./routes/blogCom");
 const blgRepRouter = require("./routes/blogRep");
 const likeRouter = require("./routes/liked");
 const searchRouter = require("./routes/search");
+const creditRouter = require("./routes/credit");
+const paymentRouter = require("./routes/payment");
+const thnkRouter = require("./routes/thanks");
 
-app.get("*",checkUser,checkCart)
+app.get("*",checkUser,checkCart);
+
 app.use("/" , authRouter);
 app.use("/" , homeRouter);
 app.use("/" , contactRouter);
@@ -78,3 +86,6 @@ app.use("/" , blgRouter);
 app.use("/" , blgComRouter);
 app.use("/" , blgRepRouter);
 app.use("/" , likeRouter);
+app.use("/" , creditRouter);
+app.use("/" , paymentRouter);
+app.use("/" , thnkRouter);

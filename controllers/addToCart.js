@@ -18,7 +18,7 @@ module.exports.addtocart_put = async(req, res, next) => {
             const cart = await Cart.create({products :prods});
             const token = createToken(cart._id);
             res.cookie('cart', token , {httpOnly : true , maxAge : maxAge * 1000});
-            res.redirect("/");
+            res.redirect(req.body.location);
             // res.status(201).json({cart : cart._id});
         } else {
             let theId = "";
@@ -37,9 +37,9 @@ module.exports.addtocart_put = async(req, res, next) => {
                 prods.push(req.body.id);
             thisCart.products = prods;
             await thisCart.save();
-            res.redirect("/");
+            res.redirect(req.body.location);
             } else {
-                res.redirect("/");
+                res.redirect(req.body.location);
             }
             
             // res.status(201).json("added to cart");
@@ -71,11 +71,11 @@ module.exports.remove_put = async(req, res, next) => {
                 }
             });
             indexes.forEach(el => {
-                prods.splice(el);
+                prods.splice(el,1);
             });
             thisCart.products = prods;
             await thisCart.save();
-            res.redirect("/");
+            res.redirect(req.body.location1);
             // res.status(201).json("removed from cart");
         } catch (err) {
             console.log(err);

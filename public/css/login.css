@@ -29,7 +29,7 @@
     border: 1px solid black;
     position: relative;
 }
-form::before {
+form.n2::before {
     content: "";
     position: absolute;
     top: 4px;

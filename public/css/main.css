@@ -4,6 +4,24 @@
     --hovering:#7db1e1;
     --leftr : 85%
 }
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: var(--main-color); 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--hovering); 
+  }
 * {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -135,7 +153,7 @@ header .container {
     align-items: center;
     list-style: none;
     margin: 10px 0 0;
-    padding-left: 40px;
+    /* padding-left: 40px; */
 }
 .submenu ul li {
     margin-right: 25px;
@@ -559,6 +577,7 @@ header .side .logout:hover {
 /* end landing  */
 
 /* start products */
+
 .products {
     padding: 50px 0;
 }
@@ -578,6 +597,7 @@ header .side .logout:hover {
 .title h1:hover {
     color:white;
     border: white 2px solid;
+    cursor: default;
 }
 .title h1:hover::before {
     right: 0;
@@ -616,6 +636,7 @@ header .side .logout:hover {
     border-radius: 50%;
     background-color: var(--main-color);
     transition-duration: 0.5s;
+    
 }
 .products .container .showType {
     width: 100%;
@@ -653,12 +674,16 @@ header .side .logout:hover {
 .products .container .showType select:focus-visible {
     outline: none;
 }
+.all {
+    width: 100%;
+}
 .products .container .all .byDate,
 .products .container .all .byName{
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
     justify-content: space-around;
+    width: 100%;
 }
 @media (max-width: 657px) {
 	.type {
@@ -781,6 +806,12 @@ header .side .logout:hover {
 }
 .products .container .box .avis .evaluation {
     margin-right: 5px;
+}
+.notFound {
+    width: 100%;
+    font-weight: bold;
+    font-size: 23px;
+    text-align: center;
 }
 /* end products */
 /* start footer */

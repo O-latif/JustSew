@@ -43,7 +43,11 @@
                             
                         <%} else {%>
                                 <div class="num" style="margin-bottom: 10px;font-weight: bold;">(<%=cartProd.length%>) item(s)</div>
-                                <div class="total" style="margin-bottom: 20px;font-weight: bold;">cart subtotal : $120</div>
+                                <% let sum = 0; %>
+                                <% for( let i = 0; i < cartProd.length; i++ ) { %>
+                                    <%sum = sum + cartProd[i].price %>
+                                <% } %>
+                                <div class="total" price = <%= sum %> style="margin-bottom: 20px;font-weight: bold;">cart subtotal : $<%= sum.toFixed(2) %> </div>
                                 <div class="items">
                                     <% for(let i = 0; i < cartProd.length; i++) {%>
                                         <% let search = cartProd[i]; %>
@@ -51,7 +55,7 @@
                                         
                                         
                                             <div class="box" style="width: 230px; min-height: 300px;padding: 20px;box-shadow: 0 0 5px rgb(0 0 0 / 25%)">
-                                                <div class="prodPic" style = "display:flex;justify-content : center; width: 100% !important;height: 150px;"><img width="100%" src= "<%=cartProd[i].path%>" alt="">
+                                                <div class="prodPic" style = "display:flex;justify-content : center; width: 100% !important;height: 150px;"><img width="100%" src="<%=cartProd[i].path1%>" alt="">
                                                 </div> 
                                                 <div class="proddet">
                                                     <h3 class="prodName"><%=cartProd[i].name%></h3>
@@ -67,9 +71,15 @@
                                                     
                                                     <h4><%=cartProd[i].price%></h4>
                                                     
-                                                    <form action="remove/?_method=PUT" method="post">
+                                                    <form action="/remove/?_method=PUT" method="post">
                                                         <input type="hidden" name="toRemove" value="<%= cartProd[i].id %>">
-                                                        <button class="remove" id="<%=i%> " onclick="getId()" style="width: 100%;cursor: pointer; margin-top: 20px; margin-left: (50% - 150); background-color: transparent; border: none;text-align :center;">remove</button>
+                                                        <input type="hidden" name="location1" value="">
+                                                        <script type="text/javascript">
+                                                            document.addEventListener("DOMContentLoaded", function() {
+                                                            document.getElementsByName("location1")[<%=i%>].value = window.location.href;
+                                                            });
+                                                        </script>
+                                                        <button class="remove frm" id="<%=i%> " onclick="getId()" style="width: 100%;cursor: pointer; margin-top: 20px; margin-left: (50% - 150); background-color: transparent; border: none;text-align :center;">remove</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -88,8 +98,8 @@
                                                 })
                                             </script> -->
                                 </div>
-
-                                <button style="width: 80%;border: 1px solid black;background-color: #A1CAF1; padding: 10px; margin-left: calc(50% - 120px); margin-top: 20px; color: white;cursor: pointer;">BUY</button>
+                                <!-- <div id="paypal" style="margin-top: 20px;"></div> -->
+                                <button style="width: 80%;border: 1px solid black;background-color: #A1CAF1; padding: 10px; margin-left: calc(50% - 120px); margin-top: 20px; color: white;cursor: pointer;" class="buy">BUY</button>
                         <%}%>
                     </div>
                 </div>
@@ -147,20 +157,24 @@
                                         
                                     <%} else {%>
                                             <div class="num" style="margin-bottom: 10px;font-weight: bold;">(<%=cartProd.length%>) item(s)</div>
-                                            <div class="total" style="margin-bottom: 20px;font-weight: bold;">cart subtotal : $120</div>
+                                            <% let sum2 = 0; %>
+                                            <% for( let i = 0; i < cartProd.length; i++ ) { %>
+                                                <%sum2 = sum2 + cartProd[i].price %>
+                                            <% } %>
+                                            <div class="total" style="margin-bottom: 20px;font-weight: bold;">cart subtotal : $<%= sum2.toFixed(2) %></div>
                                             <div class="items">
                                                 <% for(let i = 0; i < cartProd.length; i++) {%>
                                                     <% let search = cartProd[i]; %>
                                                     
                                                         <div class="box" style="width: 230px; min-height: 300px;padding: 20px;box-shadow: 0 0 5px rgb(0 0 0 / 25%)">
-                                                            <div class="prodPic" style = "display:flex;justify-content : center; width: 100% !important;height: 150px;"><img width="100%" src= "<%=cartProd[i].path%>" alt="">
+                                                            <div class="prodPic" style = "display:flex;justify-content : center; width: 100% !important;height: 150px;"><img width="100%" src= "<%=cartProd[i].path1%>" alt="">
                                                             </div> 
                                                             <div class="proddet">
                                                                 <h3 class="prodName"><%=cartProd[i].name%></h3>
                                                                 <!-- <div class="showadd"  id="showadd style="display: flex; align-items: center; cursor: pointer;">
                                                                     See Details <img src="/images/down.svg" alt="" width="20px" height="20px">
                                                                 </div> -->
-                                                                <div class="additional"  id="addit<%=i%>"  style="width: 100%;display: none;">
+                                                                <div class="additional"  id="addit<%=i%>"  style="width: 100%;">
                                                                     
                                                                     <p>PDF Pattern</p>
                                                                     <p>sizes : <%=cartProd[i].size%></p>
@@ -169,9 +183,15 @@
                                                                 
                                                                 <h4><%=cartProd[i].price%></h4>
                                                                 
-                                                                <form action="remove/?_method=PUT" method="post">
+                                                                <form action="/remove/?_method=PUT" method="post">
                                                                     <input type="hidden" name="toRemove" value="<%= cartProd[i].id %>">
-                                                                    <button class="remove" id=" style="width: 100%;cursor: pointer; margin-top: 20px; margin-left: (50% - 150); background-color: transparent; border: none;text-align :center;">remove</button>
+                                                                    <input id="rmv<%= i %>" type="hidden" name="location1" value="">
+                                                                    <script type="text/javascript">
+                                                                        document.addEventListener("DOMContentLoaded", function() {
+                                                                        document.getElementById("rmv<%= i %>").value = window.location.href;
+                                                                        });
+                                                                    </script>
+                                                                    <button class="remove frm" id="<%=i%> " onclick="getId()" style="width: 100%;cursor: pointer; margin-top: 20px; margin-left: (50% - 150); background-color: transparent; border: none;text-align :center;">remove</button>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -190,8 +210,8 @@
                                                             })
                                                         </script> -->
                                             </div>
-            
-                                            <button style="width: 80%;border: 1px solid black;background-color: #A1CAF1; padding: 10px; margin-left: calc(50% - 120px); margin-top: 20px; color: white;cursor: pointer;">BUY</button>
+                                            <!-- <div id="paypal"  style="margin-top: 20px;"></div> -->
+                                            <button style="width: 80%;border: 1px solid black;background-color: #A1CAF1; padding: 10px; margin-left: calc(50% - 120px); margin-top: 20px; color: white;cursor: pointer;" class="buy">BUY</button>
                                     <%}%>
                         </div>
                     </div>
@@ -261,20 +281,32 @@
             <% if(wish.length == 0) {%> 
                 <p style="width: 100% ;"></p>You have no items in your Whishlist.</p>
             <% } else if (wish.length > 0) { %> 
-                <% wish.forEach(el => { %>
+                <% wish.forEach((el, i) => { %>
                     <div class="box" style="width: 230px; height: 500px;">
                         <div class="prodPic" style="width: 230px; height: 300px;"><img src="<%=el.path1%>" alt="" width= "230px" height= "300px" >
                         </div> 
                         <div class="proddet">
                             <h3 class="prodName"><%= el.name %> </h3>
                             <h4>$<%= el.price %> </h4>
-                            <form action="addToCart/?_method=PUT" method="POST" id="add2cart">
+                            <form action="/addToCart/?_method=PUT" method="POST" id="add2cart">
                                 <input type="hidden" name="id" value="<%= el.id %>">
+                                <input type="hidden" name="location" value="">
+                                <script type="text/javascript">
+                                    document.addEventListener("DOMContentLoaded", function() {
+                                    document.getElementsByName("location")[<%=i%>].value = window.location.href;
+                                    });
+                                </script>
                                 <button class="addCart" type="submit"style="width: 80%;border: 1px solid black;background-color: #A1CAF1; padding: 10px;color: white;cursor: pointer;display: flex;align-items: center;gap : 1px;margin-left : 11%;justify-content: center;"> <img src="/images/whitecart.svg" alt="" width="30px" height="30px"> ADD TO CART </button>
                             </form>
-                            <form action="removewish/?_method=PUT" method="post">
+                            <form action="/removewish/?_method=PUT" method="post">
                                 <input type="hidden" name="wishRemove" value="<%= el.id %>">
-                                <button class="remove" id=" style="width: 100%;cursor: pointer; margin-top: 20px; margin-left: (50% - 150); background-color: transparent; border: none;text-align :center;">remove</button>
+                                <input type="hidden" name="location4" value="">
+                                <script type="text/javascript">
+                                    document.addEventListener("DOMContentLoaded", function() {
+                                    document.getElementsByName("location4")[<%=i%>].value = window.location.href;
+                                    });
+                                </script>
+                                <button class="remove frm" " onclick="getId()" style="width: 100%;cursor: pointer; margin-top: 20px; margin-left: (50% - 150); background-color: transparent; border: none;text-align :center;">remove</button>
                             </form>
                         </div>
                     </div>
@@ -286,7 +318,7 @@
 <script src="/javascript/menu.js"></script>
 <% if(!user) {%>
 <script>
-    let User = document.querySelectorAll(".user");
+    User = document.querySelectorAll(".user");
 
     User.forEach(el => {
         el.onclick = () => location.assign("/login");

@@ -122,6 +122,9 @@ pst.forEach((el , ind) => {
     }
 
 }
+if(el.querySelectorAll('img').length === 1) {
+    el.parentElement.querySelector('.next').classList.add('disabled')
+} 
     let lef = 0;
     
     el.parentElement.querySelector('.next').onclick = () => {

@@ -51,6 +51,9 @@ const productSchema = new mongoose.Schema({
     prodCover8 : {
         type : Buffer,
     },
+    pdf : {
+        type : Buffer,
+    },
     gender : {
         type : String
     }
@@ -95,6 +98,16 @@ productSchema.virtual("path7").get(function() {
 productSchema.virtual("path8").get(function() {
     if(this.prodCover8 != null) {
         return `data:JPG;charset=utf-8;base64,${this.prodCover8.toString('base64')}`
+    }
+})
+// productSchema.virtual("path9").get(function() {
+//     if(this.pdf != null) {
+//         return `data:PDF;charset=utf-8;base64,${this.pdf.toString('base64')}`
+//     }
+// })
+productSchema.virtual("path9").get(function() {
+    if(this.pdf != null) {
+        return `data:application/pdf;base64,${this.pdf.toString('base64')}`
     }
 })
 module.exports = mongoose.model("product",productSchema)

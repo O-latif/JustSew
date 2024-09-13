@@ -37,6 +37,12 @@
                                     
                                     <form action="addToCart/?_method=PUT" method="POST" id="add2cart">
                                         <input type="hidden" name="id" value="<%= Tproducts[k].id %>">
+                                        <input type="hidden" name="location" value="">
+                                        <script type="text/javascript">
+                                            document.addEventListener("DOMContentLoaded", function() {
+                                            document.getElementsByName("location")[<%=k%>].value = window.location.href;
+                                            });
+                                        </script>
                                         <button class="addCart" type="submit"> <img src="/images/whitecart.svg" alt="" width="30px" height="30px"> ADD TO CART </button>
                                     </form>
                                     
@@ -94,6 +100,12 @@
                                     
                                     <form action="addToCart/?_method=PUT" method="POST" id="add2cart">
                                         <input type="hidden" name="id" value="<%= Nproducts[k].id %>">
+                                        <input type="hidden" name="location" value="">
+                                        <script type="text/javascript">
+                                            document.addEventListener("DOMContentLoaded", function() {
+                                            document.getElementsByName("location")[<%=k%>].value = window.location.href;
+                                            });
+                                        </script>
                                         <button class="addCart" type="submit"> <img src="/images/whitecart.svg" alt="" width="30px" height="30px"> ADD TO CART </button>
                                     </form>
                                     
@@ -151,7 +163,7 @@
                     <button type="submit" class="buttn">1 </button>
                     
                     <% if (all.length > 1) { %>
-                        <% let nums = Math.ceil(all.length/3) %> 
+                        <% let nums = Math.ceil(all.length/9) %> 
                         
                             <% for( let i = 2; i <= nums; i++ ) { %>
                                 <button type="submit" class="buttn"><%= i %> </button>
@@ -188,7 +200,7 @@
 
                     document.querySelector(`.numbers .buttn:nth-of-type(${len + 1})`).style.cssText = "display : block";
 
-                    if(document.querySelector(".numbers form input").value < Math.ceil(<%= all.length/3 %>)) {
+                    if(document.querySelector(".numbers form input").value < Math.ceil(<%= all.length/9 %>)) {
                             icn.onclick = () => {
 
                             but.forEach((el , i) => {

@@ -93,19 +93,17 @@ module.exports.removewish_put = async(req, res, next) => {
         }
         const thisWish = await Wish.findById(theId);
         prods = thisWish.products;
-            console.log("before '" ,thisWish ,"'")
             prods.forEach((element, index) => {
                 if(element.toString() === remove ) {
                     indexes.push(index);
                 }
             });
             indexes.forEach(el => {
-                prods.splice(el);
+                prods.splice(el,1);
             });
             thisWish.products = prods;
-            console.log("after " , prods.length)
             await thisWish.save();
-            res.redirect("/");
+            res.redirect(req.body.location4);
             // res.status(201).json("removed from cart");
         } catch (err) {
             console.log(err);

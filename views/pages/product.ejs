@@ -79,9 +79,18 @@
                     </div>
                     <div class="inline">
                         <h4><%= prod.price %> </h4>
-                        <button class="addCart"> <img src="/images/whitecart.svg" alt="" width="30px" height="30px"> ADD TO CART </button>
+                        <form action="/addToCart/?_method=PUT" method="POST" id="add2cart" style="width: 40%;">
+                            <input type="hidden" name="id" value="<%= prod.id %>">
+                            <input type="hidden" name="location" value="">
+                            <script type="text/javascript">
+                                document.addEventListener("DOMContentLoaded", function() {
+                                  document.getElementsByName("location")[0].value = window.location.href;
+                                });
+                            </script>
+                            <button class="addCart" type="submit" style="width: 90%;"> <img src="/images/whitecart.svg" alt="" width="30px" height="30px"> ADD TO CART </button>
+                        </form>
                     </div>
-                    <ul class="additional" style="width: 100%;">
+                    <ul class="additionalP" style="width: 100%;">
                         <li><%= prod.name %> </li>
                         <li>PDF Pattern</li>
                         <li>sizes: <%= prod.size %>  </li>
@@ -131,6 +140,9 @@
                 <% if (prod.path8 !== "data:JPG;charset=utf-8;base64,") { %>
                     <img src="<%= prod.path8 %>" alt="" width="100%" height="100%">
                     <% } %>
+                <% if (prod.path9 !== "data:PDF;charset=utf-8;base64,") { %>
+                    <a href="<%=prod.path9%>">example</a>
+                    <% } %>
             </div>
             <div class="slider-bulls">
                 <span id="indicators" class="indicators">
@@ -142,7 +154,7 @@
                 <div class="title" style="width: 100%; display: flex; justify-content: center; margin-bottom: 40px;">
                     <h1>Reviews</h1>
                 </div>
-                <h3>what people say</h3>
+                <h3 class="h3">what people say</h3>
                 <% if (comments.length >= 1) { %>
                     <% comments.forEach(com => { %>
                         <div class="cmnt">
@@ -177,7 +189,7 @@
                     <p style="width: 100%; text-align: center; font-weight: bold; font-size: 26px; color: #aaa;">There is No Comments</p>
                 <% } %> 
                 
-                <h3>Your Review </h3>
+                <h3 class="h3">Your Review </h3>
             
                     <div class="bigeval">
                         <div id="1" class="image" style="background-image: url('../images/star.svg');background-size: contain;"></div>

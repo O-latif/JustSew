@@ -16,22 +16,22 @@ router.get("/boys",checkCart, async (req,res) => {
     let resultN = [];
 
     if(req.body.val > 1){
-        for(let i = (3 * (parseInt(req.body.val) - 1)) ; i <= (3 * parseInt(req.body.val))-1 ; i++) {
+        for(let i = (9 * (parseInt(req.body.val) - 1)) ; i <= (9 * parseInt(req.body.val))-1 ; i++) {
             if(r[i]){
                 resultT.push(r[i]);
             }
             if(N[i]){
                 resultN.push(N[i]);
             }
-        }
+        }   
     } else if (req.body.val == 1){
-        for(let i = 1 ; i <= 3 ; i++) {
+        for(let i = 1 ; i <= 9 ; i++) {
             resultT.push(r[i-1]);
             resultN.push(N[i-1]);
         }
     } else {
-        if(r.length > 3 ) {
-            for(let i = 1 ; i <= 3 ; i++) {
+        if(r.length > 9 ) {
+            for(let i = 1 ; i <= 9 ; i++) {
                 resultT.push(r[i]);
             }
         } else {
@@ -39,8 +39,8 @@ router.get("/boys",checkCart, async (req,res) => {
                 resultT.push(r[i]);
             }
         }
-        if(N.length > 3 ) {
-            for(let i = 1 ; i <= 3 ; i++) {
+        if(N.length > 9 ) {
+            for(let i = 1 ; i <= 9 ; i++) {
                 resultN.push(N[i]);
             }
         } else {

@@ -32,12 +32,9 @@ router.get("/product/:id",checkCart,async (req,res) => {
     if(res.locals.user) {
         if(res.locals.user.wishlist !== "") {
             let wish = await Wish.findById(res.locals.user.wishlist);
-
             let  wishpro = wish.products;
-            wishProducts = await product.find({ id: { $in: wishpro } });
-            
+            wishProducts = await product.find({ _id: { $in: wishpro } });
         }
-        
     }
     let comments =await Comment.find({prodId : req.params.id });
     
@@ -57,7 +54,6 @@ router.get("/product/:id",checkCart,async (req,res) => {
             })
             moy = Math.round(sum / notes.length);
         }
-        
     res.render("pages/product",{css :"product",prod : result, cartProd : cartArr,wish : wishProducts,comments ,moyen : moy ,  title : "product"});
 })
 router.put("/product/:id",checkUser ,async (req,res) => {
@@ -66,6 +62,7 @@ router.put("/product/:id",checkUser ,async (req,res) => {
         var dd = String(today.getDate()).padStart(2, '0');
         var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
         var yyyy = today.getFullYear();
+
 
         today = dd + '/' + mm + '/' + yyyy;
         const com =  new Comment({
@@ -78,22 +75,28 @@ router.put("/product/:id",checkUser ,async (req,res) => {
             date : today
         })
         com.save();
-        let comments =await Comment.find({prodId : req.params.id });
-        
+
+        let comments = await Comment.find({prodId : req.params.id });
+        comments.push(com)
 
         let notes = [];
         comments.forEach(com => {
             notes.push(com.note);
         });
         
-        let sum = notes[0];
-        let moy = sum;
+        let sum = 0;
+        let moy = 0;
         if(notes.length > 1) {
             sum = notes.reduce(function(acc, cur,ind, arr) {
                 return acc + cur;
             })
+            console.log('sum is : ',sum)
             moy = Math.round(sum / notes.length);
+        } else if (notes.length === 1 ){
+            console.log('sum is : ',notes[0])
+            moy = notes[0]
         }
+        
         
         const pro = await product.findById(req.params.id);
         pro.moyen = moy;
